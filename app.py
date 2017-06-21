@@ -42,7 +42,7 @@ def metrology_post():
   return "metrology_post"
 
 # R8 Réinitialiser une partie (GET)
-@app.route("/reset", methods=['POST']])
+@app.route("/reset", methods=['POST'])
 def reset_get():
   return "reset_get"
 
