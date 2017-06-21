@@ -34,6 +34,18 @@
   border-width: thin;
   border-style: solid;
   border-color: black;
-  height: 185px;
+  height: 220px;
   width: 149px ;
+  margin-top: 30px;
+}
+
+.sectionDos {
+  display: block;
+  border-width: thin;
+  border-style: solid;
+  border-color: black;
+  height: 220px;
+  width: 149px ;
+  margin-top: 30px;
+  margin-left: 200px;
 }
