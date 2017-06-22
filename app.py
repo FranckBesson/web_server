@@ -6,10 +6,14 @@ app = Flask(__name__)
 app.debug = True
 CORS(app)
 
+# For parsing json in request
+def json_response(data="OK", status=200):
+  return json.dumps(data), status, { "Content-Type": "application/json" }
+
 # R1 Commande temps (GET)
 @app.route("/metrology", methods=['GET'])
 def metrology_get():
-  return "metrology_get"
+  return json_response("metrology_get")
 
 # R2 Obtenir les détails d'une partie
 @app.route("/map", methods=['GET'])
@@ -19,7 +23,7 @@ def map_get():
 # R3 Commande "simulateur"
 @app.route("/sales", methods=['POST'])
 def sales_post():
-  return "sales_post"
+  return json_response("sales_post")
 
 # R4 Quitter/Rejoindre une partie
 @app.route("/players", methods=['POST'])
