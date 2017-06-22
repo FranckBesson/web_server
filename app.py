@@ -13,7 +13,7 @@ def json_response(data="OK", status=200):
 # R1 Commande temps (GET)
 @app.route("/metrology", methods=['GET'])
 def metrology_get():
-  return json_response("metrology_get")
+  return jsonify(json.loads(open('exemple1.json').read()))  
 
 # R2 Obtenir les détails d'une partie
 @app.route("/map", methods=['GET'])
@@ -46,7 +46,7 @@ def actions_playername_post():
 
 # R7 Commande temps (POST)
 @app.route("/metrology", methods=['POST'])
-def metrology_post():
+def metrology_post():0
   elements = request.get_json()
   return json_response(elements)
 
