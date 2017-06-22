@@ -13,12 +13,12 @@ def json_response(data="OK", status=200):
 # R1 Commande temps (GET)
 @app.route("/metrology", methods=['GET'])
 def metrology_get():
-  return json_response(jsonify(json.loads(open('exemple1.json').read())))
+  return jsonify(json.loads(open('exemple1.json').read()))
 
 # R2 Obtenir les détails d'une partie
 @app.route("/map", methods=['GET'])
 def map_get():
-  return json_response(jsonify(json.loads(open('exemple2.json').read())))
+  return jsonify(json.loads(open('exemple2.json').read()))
 
 # R3 Commande "simulateur"
 @app.route("/sales", methods=['POST'])
@@ -32,13 +32,13 @@ def sales_post():
 def players_post():
   elements = request.get_json()
   print(str(elements))
-  return json_response(jsonify(json.loads(open('exemple4.json').read())))
+  return jsonify(json.loads(open('exemple4.json').read()))
 
 # R5 Obtenir les détails d'une parie
 @app.route("/map/<playerName>", methods=['GET'])
 def map_playername_get(playerName):
   print(str(playerName))
-  return json_response(jsonify(json.loads(open('exemple5.json').read())))
+  return jsonify(json.loads(open('exemple5.json').read()))
 
 # R6 INstruction du joueur pour le jour suivant
 @app.route("/actions/<playerName>", methods=['POST'])
@@ -61,7 +61,7 @@ def reset_get():
 # R9 Obtenir la liste des ingrédients
 @app.route("/ingredients", methods=['GET'])
 def ingredients_get():
-  return json_response(jsonify(json.loads(open('exemple9.json').read())))
+  return jsonify(json.loads(open('exemple9.json').read()))
 
 if __name__ == "__main__" :
    app.run()
