@@ -1,0 +1,18 @@
+{
+	"ingredients" : 
+	[
+		{
+			"name" : "lemon",
+			"cost" : 0.3,
+			"hasAlcohol" : "False",
+			"isCold" : "False"
+		},
+		{
+			"name" : "water",
+			"cost" : 0.1,
+			"hasAlcohol" : "False",
+			"isCold" : "False"
+		}
+	]
+}
+
