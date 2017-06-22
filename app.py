@@ -31,7 +31,8 @@ def sales_post():
 @app.route("/players", methods=['POST'])
 def players_post():
   elements = request.get_json()
-  return json_response(elements)
+  print(str(elements))
+  return json_response(jsonify(json.loads(open('exemple4.json').read())))
 
 # R5 Obtenir les détails d'une parie
 @app.route("/map/<playerName>", methods=['GET'])
