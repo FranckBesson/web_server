@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import json
 
@@ -14,7 +14,7 @@ def metrology_get():
 # R2 Obtenir les détails d'une partie
 @app.route("/map", methods=['GET'])
 def map_get():
-  return "map_get"
+  return jsonify(json.loads(open('untitled.json').read()))
 
 # R3 Commande "simulateur"
 @app.route("/sales", methods=['POST'])
