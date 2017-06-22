@@ -46,7 +46,7 @@ def actions_playername_post():
 
 # R7 Commande temps (POST)
 @app.route("/metrology", methods=['POST'])
-def metrology_post():0
+def metrology_post():
   elements = request.get_json()
   return json_response(elements)
 
