@@ -1,0 +1,26 @@
+{
+	"name": "player1", 
+	"location" : {
+		"latitude" : 44.5,
+		"longitude" : 55.0
+	},
+	"info" : {
+		"cash" : 55.6,
+		"sales" : 5,
+		"profit" : 5.5,
+		"drinksOffered" : [
+			{
+				"name" : "lemonade",
+				"price" : 0.2,
+				"hasAlcohol" : "False",
+				"isCold" : "True"
+			},
+			{
+				"name" : "the",
+				"price" : 0.3,
+				"hasAlcohol" : "False",
+				"isCold" : "True"
+			}
+		]
+	}
+}

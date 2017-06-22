@@ -23,12 +23,14 @@ def map_get():
 # R3 Commande "simulateur"
 @app.route("/sales", methods=['POST'])
 def sales_post():
-  return json_response("sales_post")
+  elements = request.get_json()
+  return json_response(elements)
 
 # R4 Quitter/Rejoindre une partie
 @app.route("/players", methods=['POST'])
 def players_post():
-  return "player_post" 
+  elements = request.get_json()
+  return json_response(elements)
 
 # R5 Obtenir les détails d'une parie
 @app.route("/map/<playerName>", methods=['GET'])
@@ -38,17 +40,20 @@ def map_playername_get():
 # R6 INstruction du joueur pour le jour suivant
 @app.route("/actions/<playerName>", methods=['POST'])
 def actions_playername_post():
-  return "actions_playername_post"
+  elements = request.get_json()
+  return json_response(elements)
 
 # R7 Commande temps (POST)
 @app.route("/metrology", methods=['POST'])
 def metrology_post():
-  return "metrology_post"
+  elements = request.get_json()
+  return json_response(elements)
 
 # R8 Réinitialiser une partie (GET)
 @app.route("/reset", methods=['POST'])
 def reset_get():
-  return "reset_get"
+  elements = request.get_json()
+  return json_response(elements)
 
 # R9 Obtenir la liste des ingrédients
 @app.route("/ingredients", methods=['GET'])
