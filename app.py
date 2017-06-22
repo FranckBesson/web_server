@@ -59,7 +59,8 @@ def actions_playername_post(playerName):
 @app.route("/metrology", methods=['POST'])
 def metrology_post():
   elements = request.get_json()
-  return json_response(elements)
+  print(str(elements))
+  return jsonify(json.loads(open('exemple7.json').read()))
 
 # R8 Réinitialiser une partie (GET)
 @app.route("/reset", methods=['POST'])
