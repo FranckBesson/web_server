@@ -24,7 +24,7 @@ def map_get():
 @app.route("/sales", methods=['POST'])
 def sales_post():
   elements = request.get_json()
-  print(str(elements["information"]))
+  print(str(elements))
   return json_response(elements)
 
 # R4 Quitter/Rejoindre une partie
