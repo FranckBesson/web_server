@@ -18,7 +18,7 @@ def metrology_get():
 # R2 Obtenir les détails d'une partie
 @app.route("/map", methods=['GET'])
 def map_get():
-  return jsonify(json.loads(open('untitled.json').read()))
+  return jsonify(json.loads(open('exemple2.json').read()))
 
 # R3 Commande "simulateur"
 @app.route("/sales", methods=['POST'])
