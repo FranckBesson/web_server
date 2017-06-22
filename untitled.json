@@ -1,0 +1,40 @@
+{"map":{
+	"region":{
+		"center": {"latitude":15.5,"longitude":10.5},
+		"span":  {"latitude":5,"longitude":10}
+	},
+	"ranking": ["j1"],
+	"itemsByPlayer": {
+		"j1" :[
+			{
+				"kind" : "stand",  
+				"owner" : "j1",
+				"location": {"latitude":1,"longitude":2},
+				"influence": 10
+			},
+			{
+				"kind" : "ad",  
+				"owner" : "j1",
+				"location": {"latitude":1,"longitude":2},
+				"influence": 10
+			}
+		]
+	},
+	"playerInfo": {
+		"j1":{
+			"cash": 19.5,
+			"sales": 2,
+			"profit": 1.2
+		}
+	},
+	"drinkByPlayer":{
+		"j1": [
+			{
+				"name":"orange",
+				"price": 1.2
+			}
+		]
+
+	}
+}
+}
