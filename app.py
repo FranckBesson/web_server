@@ -56,19 +56,21 @@ def actions_playername_post(playerName):
   return jsonify(json.loads(open('exemple6.json').read()))
 
 # R7 Commande temps (POST)
+# Par le programme c
 @app.route("/metrology", methods=['POST'])
 def metrology_post():
   elements = request.get_json()
   print(str(elements))
-  return jsonify(json.loads(open('exemple7.json').read()))
+  return json_response()
 
 # R8 Réinitialiser une partie (GET)
-@app.route("/reset", methods=['POST'])
+# Par le client web
+@app.route("/reset", methods=['GET'])
 def reset_get():
-  elements = request.get_json()
-  return json_response(elements)
+  return json_response()
 
 # R9 Obtenir la liste des ingrédients
+# Par le client web
 @app.route("/ingredients", methods=['GET'])
 def ingredients_get():
   return jsonify(json.loads(open('exemple9.json').read()))
