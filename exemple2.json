@@ -3,7 +3,7 @@
 		"center": {"latitude":15.5,"longitude":10.5},
 		"span":  {"latitude":5,"longitude":10}
 	},
-	"ranking": ["j1","j2"],
+	"ranking": ["j1"],
 	"itemsByPlayer": {
 		"j1" :[
 			{
