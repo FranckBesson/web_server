@@ -11,16 +11,19 @@ def json_response(data="OK", status=200):
   return json.dumps(data), status, { "Content-Type": "application/json" }
 
 # R1 Commande temps (GET)
+# Par le client web et le simulateur java
 @app.route("/metrology", methods=['GET'])
 def metrology_get():
   return jsonify(json.loads(open('exemple1.json').read()))
 
 # R2 Obtenir les détails d'une partie
+# Par le simulateur Java
 @app.route("/map", methods=['GET'])
 def map_get():
   return jsonify(json.loads(open('exemple2.json').read()))
 
 # R3 Commande "simulateur"
+# Par le simulateur Java
 @app.route("/sales", methods=['POST'])
 def sales_post():
   elements = request.get_json()
@@ -28,6 +31,7 @@ def sales_post():
   return json_response(elements)
 
 # R4 Quitter/Rejoindre une partie
+# Par client web
 @app.route("/players", methods=['POST'])
 def players_post():
   elements = request.get_json()
@@ -35,16 +39,21 @@ def players_post():
   return jsonify(json.loads(open('exemple4.json').read()))
 
 # R5 Obtenir les détails d'une parie
+# Par le client web
 @app.route("/map/<playerName>", methods=['GET'])
 def map_playername_get(playerName):
   print(str(playerName))
   return jsonify(json.loads(open('exemple5.json').read()))
 
-# R6 INstruction du joueur pour le jour suivant
+# R6 Instruction du joueur pour le jour suivant
+# Par le client web
 @app.route("/actions/<playerName>", methods=['POST'])
-def actions_playername_post():
+def actions_playername_post(playerName):
   elements = request.get_json()
-  return json_response(elements)
+  print(str(playerName))
+  print(str(elements))
+
+  return jsonify(json.loads(open('exemple6.json').read()))
 
 # R7 Commande temps (POST)
 @app.route("/metrology", methods=['POST'])
