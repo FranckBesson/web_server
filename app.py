@@ -75,10 +75,8 @@ def metrology_post():
     DELETE FROM TIME;
   """)
 
-  db.execute("""
-    INSERT INTO TIME(TIME_HOUR)
-    VALUES ("+elements["timestamp"]+");
-  """)
+  db.execute("INSERT INTO TIME(TIME_HOUR) VALUES ("\
+		+elements["timestamp"]+");")
 
   db.close()
 
