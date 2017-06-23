@@ -96,7 +96,7 @@ def metrology_post():
         VALUES("+jour_actuel+","+weather+");\
       ")
 
-    else
+    else :
 
       db.execute("\
         UPDATE DAY SET DAY_WEATHER = "+weather+"\
