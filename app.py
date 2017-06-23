@@ -70,7 +70,14 @@ def actions_playername_post(playerName):
 def metrology_post():
   elements = request.get_json()
   print(str(elements["timestamp"]))
-  print("niquedesmere")
+  db.execute()
+
+  db = Db()
+  db.execute("""
+    INSERT INTO TIME VALUES (@(timestamp));
+  """, elements)
+  db.close()
+
   return json_response()
 
 # R8 Réinitialiser une partie (GET)
