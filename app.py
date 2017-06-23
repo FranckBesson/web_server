@@ -73,7 +73,7 @@ def metrology_post():
 
   db = Db()
 
-  jour_actuel = ((int)(elements["timestamp"]))/24
+  jour_actuel = (int)((int)(elements["timestamp"]))/24
 
 
   # Jour courrant
@@ -83,7 +83,7 @@ def metrology_post():
 
     row = db.execute("\
       SELECT * FROM DAY\
-      WHERE DAY_NUMBER == "+jour_actuel+";\
+      WHERE DAY_NUMBER == "+(str)jour_actuel+";\
     ")
 
     print(str(row))
