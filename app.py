@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
+from database/db import Db
 import json
 
 app = Flask(__name__)
 app.debug = True
 CORS(app)
+
+db = Db()
 
 # For parsing json in request
 def json_response(data="OK", status=200):
@@ -60,7 +63,7 @@ def actions_playername_post(playerName):
 @app.route("/metrology", methods=['POST'])
 def metrology_post():
   elements = request.get_json()
-  print(str(elements))
+  print(str(elements["timestamp"]))
   return json_response()
 
 # R8 Réinitialiser une partie (GET)
