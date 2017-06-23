@@ -70,7 +70,8 @@ def metrology_post():
 
   print(str(elements))
   print(str(elements["timestamp"]))
-
+  weather = str(elements["weather"]["weather"])
+  print("-- log -- weather : " + weather)
   db = Db()
 
   jour_actuel = (int)((int)(elements["timestamp"])/24)
@@ -87,6 +88,20 @@ def metrology_post():
     ")
 
     print(str(row))
+
+    if str(row) == "None" :
+
+      db.execute("\
+        INSERT INTO DAY\
+        VALUES("+jour_actuel+","+weather+");\
+      ")
+
+    else
+
+      db.execute("\
+        UPDATE DAY SET DAY_WEATHER = "+weather+"\
+        WHERE DAY_NUMBER = "+jour_actuel+";
+      ")
 
   # Jour suivant
   elif elements["weather"]["dfn"] == "1" :
