@@ -7,8 +7,6 @@ app = Flask(__name__)
 app.debug = True
 CORS(app)
 
-db = Db()
-
 # For parsing json in request
 def json_response(data="OK", status=200):
   return json.dumps(data), status, { "Content-Type": "application/json" }
