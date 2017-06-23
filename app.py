@@ -71,20 +71,27 @@ def metrology_post():
 
   db = Db()
 
-  db.execute("\
-    DELETE FROM TIME;\
-  ")
+  jour_actuel = (int)(elements["timestamp"]/24)
 
-  db.execute("\
-    INSERT INTO TIME(TIME_HOUR)\
-    VALUES ("+elements["timestamp"]+");\
-  ")
+  # Jour courrant
+  if elements["weather"]["dfn"] == 0 :
 
-  #db.execute("\
-  #  INSERT
-  #")
+    print("current day")
 
-  db.close()
+    row = db.execute("\
+      SELECT * FROM DAY\
+      WHERE DAY_NUMBER == "+jour_actuel+";\
+    ")
+
+    print(str(row))
+
+  # Jour suivant
+  elif elements["weather"]["dfn"] == 1 :
+
+    print("day after")
+
+
+  db.close()  
 
   return json_response()
 
