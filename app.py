@@ -67,11 +67,14 @@ def actions_playername_post(playerName):
 @app.route("/metrology", methods=['POST'])
 def metrology_post():
   elements = request.get_json()
+
+  print(str(elements))
   print(str(elements["timestamp"]))
 
   db = Db()
 
   jour_actuel = ((int)(elements["timestamp"]))/24
+
 
   # Jour courrant
   if elements["weather"]["dfn"] == 0 :
