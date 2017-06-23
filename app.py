@@ -89,7 +89,7 @@ def metrology_post():
 
     print(str(row))
 
-    if str(row) == "None" :
+    if len(row) == 0 :
 
       db.execute("\
         INSERT INTO DAY\
@@ -115,7 +115,7 @@ def metrology_post():
 
     print(str(row))
 
-    if str(row) == "None" :
+    if len(row) == 0 :
 
       db.execute("\
         INSERT INTO DAY\
