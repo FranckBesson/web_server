@@ -100,7 +100,7 @@ def metrology_post():
 
       db.execute("\
         UPDATE DAY SET DAY_WEATHER = "+str(weather)+"\
-        WHERE DAY_NUMBER = "+str(jour_actuel)+";
+        WHERE DAY_NUMBER = "+str(jour_actuel)+";\
       ")
 
   # Jour suivant
