@@ -68,7 +68,6 @@ def actions_playername_post(playerName):
 def metrology_post():
   elements = request.get_json()
   print(str(elements["timestamp"]))
-  db.execute()
 
   db = Db()
   db.execute("""INSERT INTO TIME(TIME_HOUR) VALUES (@(timestamp));""",elements)
