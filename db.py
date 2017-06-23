@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import psycopg2, re, os, urlparse
+import psycopg2, re, os
+from urlparse import urlparse
 
 DATABASE_URL = "postgres://bnrajpvobvykxm:4006d0e5cb49a16653bb01c161212c206b09cc6d929ad59f497a93d212675e03@ec2-107-22-162-158.compute-1.amazonaws.com:5432/d2nvt9m6b7m9ug"
 
