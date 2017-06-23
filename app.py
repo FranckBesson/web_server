@@ -83,7 +83,7 @@ def metrology_post():
 
     row = db.execute("\
       SELECT * FROM DAY\
-      WHERE DAY_NUMBER == "+(str)jour_actuel+";\
+      WHERE DAY_NUMBER == "+str(jour_actuel)+";\
     ")
 
     print(str(row))
