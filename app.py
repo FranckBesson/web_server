@@ -76,9 +76,13 @@ def metrology_post():
   ")
 
   db.execute("\
-	INSERT INTO TIME(TIME_HOUR)\
-	VALUES ("+elements["timestamp"]+");\
+    INSERT INTO TIME(TIME_HOUR)\
+    VALUES ("+elements["timestamp"]+");\
   ")
+
+  #db.execute("\
+  #  INSERT
+  #")
 
   db.close()
 
