@@ -1,23 +1,17 @@
 # -*- coding: utf-8 -*-
 import psycopg2, re, os
-from urlparse import urlparse
-
-DATABASE_URL = "postgres://bnrajpvobvykxm:4006d0e5cb49a16653bb01c161212c206b09cc6d929ad59f497a93d212675e03@ec2-107-22-162-158.compute-1.amazonaws.com:5432/d2nvt9m6b7m9ug"
 
 class Db:
   """Connexion à la base de données postgres de l'environnement Heroku."""
 
   def __init__(self):
     """Initiate a connection to the default postgres database."""
-    urlparse.uses_netloc.append("postgres")
-    url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
     self.conn = psycopg2.connect(
-        database=url.path[1:],
-        user=url.username,
-        password=url.password,
-        host=url.hostname,
-        port=url.port
+        database="d2nvt9m6b7m9ug",
+        user="bnrajpvobvykxm",
+        password="4006d0e5cb49a16653bb01c161212c206b09cc6d929ad59f497a93d212675e03",
+        host="ec2-107-22-162-158.compute-1.amazonaws.com",
+        port="5432"
     )
     self.cur = self.conn.cursor()
 
