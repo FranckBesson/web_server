@@ -108,6 +108,26 @@ def metrology_post():
 
     print("day after")
 
+    row = db.select("\
+      SELECT * FROM DAY\
+      WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
+    ")
+
+    print(str(row))
+
+    if str(row) == "None" :
+
+      db.execute("\
+        INSERT INTO DAY\
+        VALUES("+str(jour_actuel+1)+",\'"+str(weather)+"\'');\
+      ")
+
+    else :
+
+      db.execute("\
+        UPDATE DAY SET DAY_WEATHER = \'"+str(weather)+"\'\
+        WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
+      ")
 
   db.close()  
 
