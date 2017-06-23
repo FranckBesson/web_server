@@ -74,7 +74,7 @@ def metrology_post():
   db = Db()
 
   jour_actuel = (int)((int)(elements["timestamp"])/24)
-
+  print(str(jour_actuel))
 
   # Jour courrant
   if elements["weather"]["dfn"] == "0" :
