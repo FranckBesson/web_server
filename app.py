@@ -17,6 +17,12 @@ def json_response(data="OK", status=200):
 # Par le client web et le simulateur java
 @app.route("/metrology", methods=['GET'])
 def metrology_get():
+  
+  time = {
+    "timestamp" : timestamp,
+    "weather" : weather 
+  }
+  
   return jsonify(json.loads(open('exemple1.json').read()))
 
 # R2 Obtenir les détails d'une partie
