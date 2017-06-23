@@ -93,7 +93,7 @@ def metrology_post():
 
       db.execute("\
         INSERT INTO DAY\
-        VALUES("+str(jour_actuel)+",\'"+str(weather)+"\'');\
+        VALUES("+str(jour_actuel)+",\'"+str(weather)+"\');\
       ")
 
     else :
