@@ -77,7 +77,7 @@ def metrology_post():
 
 
   # Jour courrant
-  if elements["weather"]["dfn"] == 0 :
+  if elements["weather"]["dfn"] == "0" :
 
     print("current day")
 
@@ -89,7 +89,7 @@ def metrology_post():
     print(str(row))
 
   # Jour suivant
-  elif elements["weather"]["dfn"] == 1 :
+  elif elements["weather"]["dfn"] == "1" :
 
     print("day after")
 
