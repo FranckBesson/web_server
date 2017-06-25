@@ -23,8 +23,8 @@ def metrology_get():
     ")
 
   print("-- log -- current timestamp : "+str(row[0]["time_hour"]))
-  current_day_number = (int)(((int)row[0]["time_hour"])/24)
-  print("-- log -- current day number : "+str(current_day_number))
+  #current_day_number = (int)(((int)row[0]["time_hour"])/24)
+  #print("-- log -- current day number : "+str(current_day_number))
 
   #time = {
   #  "timestamp" : str(row),
