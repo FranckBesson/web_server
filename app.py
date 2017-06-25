@@ -91,6 +91,7 @@ def map_get():
   
   db = Db()
 
+  # ========================== Region ==========================
   # Requête pour connaitre lse infomrations de la map
   db_map_response = db.select("\
       SELECT * FROM map;\
@@ -116,11 +117,25 @@ def map_get():
     "span" : coordinatesSpan
   }
 
+  # ========================== Ranking ==========================
+  # Requête pour lister les joueur du plus riche au moins riche
+  db_player_rank_response = db.select("\
+      SELECT player_name , RANK() OVER(ORDER BY PLAYER_BUDGET DESC) AS rank\
+      FROM player;\
+    ")
+
+  # Création d'un tableau pour placer les joueur par ordre de richesse
+  ranking = []
+
+  # Itération sur la réponse pour alimenter le tableau
+  for player in db_player_rank_response :
+    ranking.append(player["player_name"])
+
   db.close()
 
   
 
-  ranking = []
+  
 
   # C'est la merde là
   itemsByPlayer = {

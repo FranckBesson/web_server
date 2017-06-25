@@ -105,7 +105,6 @@ CREATE TABLE MAP (
     CONSTRAINT PK_MAP PRIMARY KEY(MAP_ID)
 );
 
-
 -- ============================================================================
 -- File             : lomonade_RT.sql
 -- Author           : Franck BESSON
@@ -177,3 +176,10 @@ ADD CONSTRAINT FK_SALE_DAY_NUMBER FOREIGN KEY (SALE_DAY_NUMBER) REFERENCES DAY (
 ALTER TABLE SALE
 ADD CONSTRAINT FK_SALE_RECIPE_ID FOREIGN KEY (SALE_RECIPE_ID) REFERENCES RECIPE (RECIPE_ID);
 
+#Insert
+INSERT INTO PLAYER VALUES(0,5,5,'jean mouloude');
+INSERT INTO PLAYER VALUES(1,8,7,'jean kevin');
+INSERT INTO PLAYER VALUES(2,15,8,'jean chiesurlesrequêtes');
+INSERT INTO PLAYER VALUES(3,3,9,'jean sébastien');
+
+SELECT player_name , RANK() OVER(ORDER BY PLAYER_BUDGET DESC) AS rank FROM player;
