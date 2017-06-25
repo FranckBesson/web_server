@@ -55,12 +55,13 @@ def metrology_get():
     print("-- log -- tomorrow day weather : "+str(db_tomorrow_weather_response[0]["day_weather"]))
 
     weather_tomorrow = {
-      "dfn" : 0,
+      "dfn" : 1,
       "weather" : str(db_tomorrow_weather_response[0]["day_weather"])
     }
 
     weathers.append(weather_tomorrow)
 
+  #Création de l'objet à renvoyer
   time = {
     "timestamp" : timestamp,
     "weather" : weathers
