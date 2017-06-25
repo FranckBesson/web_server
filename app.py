@@ -66,7 +66,7 @@ def metrology_get():
     "weather" : weathers
   }
 
-  print("-- log -- response : "+time)
+  print("-- log -- response : "+str(time))
 
   db.close()
   
