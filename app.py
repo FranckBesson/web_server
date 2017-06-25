@@ -119,6 +119,7 @@ def map_get():
 
   # ========================== Ranking ==========================
   # Requête pour lister les joueur du plus riche au moins riche
+  # !!!!!!!!!!!! Bug ici on ne nous retourne pas tout !
   db_player_rank_response = db.select("\
       SELECT player_name , RANK() OVER(ORDER BY PLAYER_BUDGET DESC) AS rank\
       FROM player;\
@@ -132,7 +133,46 @@ def map_get():
   # Itération sur la réponse pour alimenter le tableau
   for player in db_player_rank_response :
     print("-- log -- " + str(player))
-    ranking.append(player["player_name"])
+    #ranking.append(player["player_name"])
+
+  # ========================== itemsByPlayer ==========================
+  # Requête pour lister les items des joueur
+
+  db_player_response = db.select("\
+      SELECT player_id, player_name\
+      FROM player;\
+    ")
+  
+  # Player by player
+  for player in db_player_response :
+
+    db_item_possession_response = db.select("\
+        SELECT item_possession_item_id\
+        FROM item_possession\
+        WHERE item_possession_player_id = '"+player["player_id"]+"';\
+      ")
+    # Item of player by item of player
+    for item in db_item_possession_response :
+
+      db_item_possession_response = db.select("\
+        SELECT *\
+        FROM item\
+        WHERE item_id = '"+item["item_possession_item_id"]+"';\
+      ")
+
+      coordinates = {
+        "latitude" : db_item_possession_response["item_x_coordinate"],
+        "longitude" : db_item_possession_response["item_y_coordinate"]
+      }
+
+      mapItem = {
+        "kind" : db_item_possession_response["item_kind"],
+        "owner" : player["player_name"],
+        "location" : coordinates,
+        "influence" : db_item_possession_response["item_influence"]
+      }
+
+      print(str(mapItem))
 
   db.close()
 
