@@ -38,24 +38,24 @@ def metrology_get():
     ")
   print("-- log -- tomorrow day weather : "+str(db_tomorrow_weather_response[0]["day_weather"]))
 
-  weather1 = {
-    "dfn" : 0,
-    "weather" : weather_today
-  }
+  #weather1 = {
+  #  "dfn" : 0,
+  #  "weather" : weather_today
+  #}
 
-  weather2 = {
-    "dfn" : 1,
-    "weather" : weather_tomorrow
-  }
+  #weather2 = {
+  #  "dfn" : 1,
+  #  "weather" : weather_tomorrow
+  #}
 
-  weathers = []
-  weathers.append(weather1)
-  weathers.append(weather2)
+  #weathers = []
+  #weathers.append(weather1)
+  #weathers.append(weather2)
 
-  time = {
-    "timestamp" : timestamp,
-    "weather" : weathers
-  }
+  #time = {
+  #  "timestamp" : timestamp,
+  #  "weather" : weathers
+  #}
 
   db.close()
   
