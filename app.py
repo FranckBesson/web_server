@@ -26,36 +26,47 @@ def metrology_get():
   current_day_number = (int)(timestamp/24)
   print("-- log -- current day number : "+str(current_day_number))
 
+  # Ce tableau contiendra tout les objet "weather"
+  weathers = []
+
   db_current_weather_response = db.select("\
       SELECT day_weather FROM day\
       WHERE day_number = "+str(current_day_number)+";\
     ")
-  print("-- log -- current day weather : "+str(db_current_weather_response[0]["day_weather"]))
+  
+  if len(db_current_weather_response) == 1 :
+
+    print("-- log -- current day weather : "+str(db_current_weather_response[0]["day_weather"]))
+
+    weather_today = {
+      "dfn" : 0,
+      "weather" : str(db_current_weather_response[0]["day_weather"])
+    }
+
+    weathers.append(weather_today)
 
   db_tomorrow_weather_response = db.select("\
       SELECT day_weather FROM day\
       WHERE day_number = "+str(current_day_number+1)+";\
     ")
-  print("-- log -- tomorrow day weather : "+str(db_tomorrow_weather_response[0]["day_weather"]))
 
-  #weather1 = {
-  #  "dfn" : 0,
-  #  "weather" : weather_today
-  #}
+  if len(db_tomorrow_weather_response) == 1 :
 
-  #weather2 = {
-  #  "dfn" : 1,
-  #  "weather" : weather_tomorrow
-  #}
+    print("-- log -- tomorrow day weather : "+str(db_tomorrow_weather_response[0]["day_weather"]))
 
-  #weathers = []
-  #weathers.append(weather1)
-  #weathers.append(weather2)
+    weather_tomorrow = {
+      "dfn" : 0,
+      "weather" : str(db_tomorrow_weather_response[0]["day_weather"])
+    }
 
-  #time = {
-  #  "timestamp" : timestamp,
-  #  "weather" : weathers
-  #}
+    weathers.append(weather_tomorrow)
+
+  time = {
+    "timestamp" : timestamp,
+    "weather" : weathers
+  }
+
+  print("-- log -- response : "+time)
 
   db.close()
   
