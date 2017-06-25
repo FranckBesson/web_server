@@ -82,7 +82,7 @@ def metrology_get():
 
   db.close()
   
-  return json_response(time)
+  return json_response(response)
 
 # R2 Obtenir les détails d'une partie
 # Par le simulateur Java
