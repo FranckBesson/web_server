@@ -110,12 +110,13 @@ def map_get():
 
   }
 
+  # Création de la map _map
   _map = {
-    "region" = region,
-    "ranking" = ranking,
-    "itemsByPlayer" = itemsByPlayer,
-    "playerInfo" = playerInfo,
-    "drinksByPlayer" = drinksByPlayer
+    "region" : region,
+    "ranking" : ranking,
+    "itemsByPlayer" : itemsByPlayer,
+    "playerInfo" : playerInfo,
+    "drinksByPlayer" : drinksByPlayer
   }
 
   #Création de l'objet à renvoyer
