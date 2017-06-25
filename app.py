@@ -18,19 +18,44 @@ def metrology_get():
   
   db = Db()
 
-  row = db.select("\
-      SELECT * FROM TIME;\
+  db_time_response = db.select("\
+      SELECT * FROM time;\
     ")
-
-  timestamp = (int)(row[0]["time_hour"])
+  timestamp = (int)(db_time_response[0]["time_hour"])
   print("-- log -- current timestamp : "+str(timestamp))
   current_day_number = (int)(timestamp/24)
   print("-- log -- current day number : "+str(current_day_number))
 
-  #time = {
-  #  "timestamp" : str(row),
-  #  "weather" : weather 
-  #}
+  db_current_weather_response = db.select("\
+      SELECT day_weather FROM day\
+      WHERE day_number = "+str(current_day_number)+";\
+    ")
+  print("-- log -- current day weather : "+str(db_current_weather_response[0]["day_weather"]))
+
+  db_tomorrow_weather_response = db.select("\
+      SELECT day_weather FROM day\
+      WHERE day_number = "+str(current_day_number+1)+";\
+    ")
+  print("-- log -- tomorrow day weather : "+str(db_tomorrow_weather_response[0]["day_weather"]))
+
+  weather1 = {
+    "dfn" : 0,
+    "weather" : weather_today
+  }
+
+  weather2 = {
+    "dfn" : 1,
+    "weather" : weather_tomorrow
+  }
+
+  weathers = []
+  weathers.append(weather1)
+  weathers.append(weather2)
+
+  time = {
+    "timestamp" : timestamp,
+    "weather" : weathers
+  }
 
   db.close()
   
