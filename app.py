@@ -72,13 +72,13 @@ def metrology_get():
     weathers.append(weather_tomorrow)
 
   #Création de l'objet à renvoyer
-  time = {
+  response = {
     "timestamp" : timestamp,
     "weather" : weathers
   }
 
   # Log
-  print("-- log -- response : "+str(time))
+  print("-- log -- response : "+str(response))
 
   db.close()
   
@@ -88,7 +88,42 @@ def metrology_get():
 # Par le simulateur Java
 @app.route("/map", methods=['GET'])
 def map_get():
-  return jsonify(json.loads(open('exemple2.json').read()))
+
+  region = {
+
+  }
+
+  ranking = []
+
+  # C'est la merde là
+  itemsByPlayer = {
+
+  }
+
+  # C'est la merde là
+  playerInfo = {
+
+  }
+
+  # C'est la merde là
+  drinksByPlayer = {
+
+  }
+
+  _map = {
+    "region" = region,
+    "ranking" = ranking,
+    "itemsByPlayer" = itemsByPlayer,
+    "playerInfo" = playerInfo,
+    "drinksByPlayer" = drinksByPlayer
+  }
+
+  #Création de l'objet à renvoyer
+  response = {
+    "map" : _map
+  }
+
+  return json_response(response)
 
 # R3 Commande "simulateur"
 # Par le simulateur Java
