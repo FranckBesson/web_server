@@ -18,7 +18,7 @@ def metrology_get():
   
   db = Db()
 
-  # Requête pour connaotre le jour actuel
+  # Requête pour connaitre le jour actuel
   db_time_response = db.select("\
       SELECT * FROM time;\
     ")
@@ -88,10 +88,37 @@ def metrology_get():
 # Par le simulateur Java
 @app.route("/map", methods=['GET'])
 def map_get():
+  
+  db = Db()
 
-  region = {
+  # Requête pour connaitre lse infomrations de la map
+  db_map_response = db.select("\
+      SELECT * FROM map;\
+    ")
 
+  # Récupération des information sur celle-ci
+  map_center_x = (float)(db_map_response[0]["map_center_x"])
+  map_center_y = (float)(db_map_response[0]["map_center_y"])
+  map_span_x = (float)(db_map_response[0]["map_span_x"])
+  map_span_y = (float)(db_map_response[0]["map_span_y"])
+
+  # On créer une map pour formater ces données
+  coordinates = {
+    "latitude" : map_center_x,
+    "longitude" : map_center_y
   }
+  coordinatesSpan = {
+    "latitudeSpan" : map_span_x,
+    "longitudeSpan" : map_span_y
+  }
+  region = {
+    "center" : coordinates,
+    "span" : coordinatesSpan
+  }
+
+  db.close()
+
+  
 
   ranking = []
 
