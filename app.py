@@ -16,8 +16,16 @@ def json_response(data="OK", status=200):
 @app.route("/metrology", methods=['GET'])
 def metrology_get():
   
+  row = db.select("\
+      SELECT FROM TIME;\
+    ")
+
+  print("-- log -- current timestamp : "+str(row))
+  current_day_number = (int)(((int)row)/24)
+  print("-- log -- current day number : "+str(current_day_number))
+
   time = {
-    "timestamp" : timestamp,
+    "timestamp" : str(row),
     "weather" : weather 
   }
   
@@ -68,15 +76,17 @@ def actions_playername_post(playerName):
 def metrology_post():
   elements = request.get_json()
 
-  print(str(elements))
-  print(str(elements["timestamp"]))
+  print("-- log -- elements : " + str(elements))
+  print("-- log -- timestamp : " + str(elements["timestamp"]))
   weather = str(elements["weather"]["weather"])
   print("-- log -- weather : " + weather)
+
   db = Db()
 
   jour_actuel = (int)((int)(elements["timestamp"])/24)
   print(str(jour_actuel))
 
+  
   # Jour courrant
   if elements["weather"]["dfn"] == "0" :
 
@@ -127,6 +137,16 @@ def metrology_post():
       db.execute("\
         UPDATE DAY SET DAY_WEATHER = \'"+str(weather)+"\'\
         WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
+      ")
+
+  #Sauvegarde du timestamp
+  db.execute("\
+        DELETE FROM TIME;\
+      ")
+
+  db.execute("\
+        INSERT INTO TIME\
+        VALUES("+str(elements["timestamp"])+");\
       ")
 
   db.close()  
