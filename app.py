@@ -154,6 +154,8 @@ def map_get():
     # Item of player by item of player
     for item in db_item_possession_response :
 
+      print("-- log --"+str(item))
+
       db_item_possession_response = db.select("\
         SELECT *\
         FROM item\
