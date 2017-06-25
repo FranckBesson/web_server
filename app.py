@@ -16,6 +16,8 @@ def json_response(data="OK", status=200):
 @app.route("/metrology", methods=['GET'])
 def metrology_get():
   
+  db = Db()
+
   row = db.select("\
       SELECT FROM TIME;\
     ")
@@ -28,6 +30,8 @@ def metrology_get():
   #  "timestamp" : str(row),
   #  "weather" : weather 
   #}
+
+  db.close()
   
   return jsonify(json.loads(open('exemple1.json').read()))
 
@@ -149,7 +153,7 @@ def metrology_post():
         VALUES("+str(elements["timestamp"])+");\
       ")
 
-  db.close()  
+  db.close()
 
   return json_response()
 
