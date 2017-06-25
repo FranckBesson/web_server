@@ -70,7 +70,7 @@ def metrology_get():
 
   db.close()
   
-  return jsonify(json.loads(open('exemple1.json').read()))
+  return json_response(time)
 
 # R2 Obtenir les détails d'une partie
 # Par le simulateur Java
