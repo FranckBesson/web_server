@@ -22,9 +22,10 @@ def metrology_get():
       SELECT * FROM TIME;\
     ")
 
-  print("-- log -- current timestamp : "+str(row[0]["time_hour"]))
-  #current_day_number = (int)(((int)row[0]["time_hour"])/24)
-  #print("-- log -- current day number : "+str(current_day_number))
+  timestamp = (int)(row[0]["time_hour"])
+  print("-- log -- current timestamp : "+str(timestamp))
+  current_day_number = (int)(timestamp/24)
+  print("-- log -- current day number : "+str(current_day_number))
 
   #time = {
   #  "timestamp" : str(row),
