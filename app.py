@@ -21,13 +21,13 @@ def metrology_get():
     ")
 
   print("-- log -- current timestamp : "+str(row))
-  current_day_number = (int)(((int)row)/24)
-  print("-- log -- current day number : "+str(current_day_number))
+  #current_day_number = (int)(((int)row)/24)
+  #print("-- log -- current day number : "+str(current_day_number))
 
-  time = {
-    "timestamp" : str(row),
-    "weather" : weather 
-  }
+  #time = {
+  #  "timestamp" : str(row),
+  #  "weather" : weather 
+  #}
   
   return jsonify(json.loads(open('exemple1.json').read()))
 
