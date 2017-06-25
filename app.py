@@ -149,7 +149,7 @@ def map_get():
     db_item_possession_response = db.select("\
         SELECT item_possession_item_id\
         FROM item_possession\
-        WHERE item_possession_player_id = '"+player["player_id"]+"';\
+        WHERE item_possession_player_id = '"+str(player["player_id"])+"';\
       ")
     # Item of player by item of player
     for item in db_item_possession_response :
@@ -157,7 +157,7 @@ def map_get():
       db_item_possession_response = db.select("\
         SELECT *\
         FROM item\
-        WHERE item_id = '"+item["item_possession_item_id"]+"';\
+        WHERE item_id = '"+str(item["item_possession_item_id"])+"';\
       ")
 
       coordinates = {
