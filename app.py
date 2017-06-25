@@ -19,7 +19,7 @@ def metrology_get():
   db = Db()
 
   row = db.select("\
-      SELECT FROM TIME;\
+      SELECT * FROM TIME;\
     ")
 
   print("-- log -- current timestamp : "+str(row))
