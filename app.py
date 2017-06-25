@@ -161,15 +161,15 @@ def map_get():
       ")
 
       coordinates = {
-        "latitude" : item["item_x_coordinate"],
-        "longitude" : item["item_y_coordinate"]
+        "latitude" : db_item_possession_response[0]["item_x_coordinate"],
+        "longitude" : db_item_possession_response[0]["item_y_coordinate"]
       }
 
       mapItem = {
-        "kind" : item["item_kind"],
+        "kind" : db_item_possession_response[0]["item_kind"],
         "owner" : player["player_name"],
         "location" : coordinates,
-        "influence" : item["item_influence"]
+        "influence" : db_item_possession_response[0]["item_influence"]
       }
 
       print(str(mapItem))
