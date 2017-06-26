@@ -48,10 +48,10 @@ def get_player_drinks_offered_by_player_name(player_name):
   for recipe in db_recipe_possession_response :
 
     db_recipe_response = db.select("""
-      SELECT *
-      FROM recipe
-      WHERE recipe_name = '"""+recipe["recipe_possession_recipe_name"]+"""';
-    """)
+        SELECT *
+        FROM recipe
+        WHERE recipe_name = '"""+recipe["recipe_possession_recipe_name"]+"""';
+      """)
 
     print(str(db_recipe_response))
 
@@ -83,11 +83,11 @@ def get_player_info_by_player_name(player_name):
 # Requête pour lister les items des joueur
 def get_items_by_player_name(player_name):
 
-  db_items_by_player_response = db.select("\
-      SELECT *\
-      FROM item\
-      WHERE item_owner = '"+str(player_name)+"';\
-    ")
+  db_items_by_player_response = db.select("""
+      SELECT *
+      FROM item
+      WHERE item_owner = '"""+str(player_name)+"""';
+    """)
 
   return db_item_possession_response
 
