@@ -54,6 +54,7 @@ def get_player_info_by_player_name(player_name):
       FROM player
       WHERE player_name = '"""+player_name+"""';
     """)
+  player = db_player_response[0]
 
   playerInfo = {
     "cash" : player["player_budget"],
