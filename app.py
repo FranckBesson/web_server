@@ -129,14 +129,14 @@ def map_get():
 
   # Player by player
   for player in db_player_response :
-    onPlayerInfo = {
-      "cash" : player["player_budget"],
-      "sales" : ,
-      "profit" : ,
-      "drinksOffered" :
-    }
+    #onPlayerInfo = {
+    #  "cash" : player["player_budget"],
+    #  "sales" : ,
+    #  "profit" : ,
+    #  "drinksOffered" :
+    #}
 
-    playerInfo[player["player_name"]] = onPlayerInfo
+    #playerInfo[player["player_name"]] = onPlayerInfo
 
   db.close()
 
