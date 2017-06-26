@@ -76,15 +76,17 @@ def get_player_drinks_offered_by_player_name(player_name):
         WHERE recipe_name = '"""+recipe["recipe_possession_recipe_name"]+"""';
       """)
 
-    # For this we need the produce price !!!!!!
-    drink_info = {
-      "name" : db_recipe_response["recipe_name"],
-      "price" : get_recipe_produce_price_by_name(db_recipe_response["recipe_name"]),
-      "hasAlcohol" : db_recipe_response["recipe_alcohol"],
-      "isCold" : db_recipe_response["recipe_cold"]
-    }
+    if len(db_recipe_response) == 1 :
 
-    drinksOffered.append(drink_info)
+      # For this we need the produce price !!!!!!
+      drink_info = {
+        "name" : db_recipe_response[0]["recipe_name"],
+        "price" : get_recipe_produce_price_by_name(db_recipe_response[0]["recipe_name"]),
+        "hasAlcohol" : db_recipe_response[0]["recipe_alcohol"],
+        "isCold" : db_recipe_response[0]["recipe_cold"]
+      }
+
+      drinksOffered.append(drink_info)
 
   return drinksOffered
 
