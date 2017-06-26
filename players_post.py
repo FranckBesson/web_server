@@ -4,30 +4,67 @@ from db import Db
 import json
 
 db = Db()
-# ========================== playerinfo ==========================
+
+
+# ========================== get_player_sale_by_player_name ==========================
+# Récupère les vente d'un joueur
+def get_player_sale_by_player_name(player_name):
+  db_player_response = db.select("""
+      SELECT *
+      FROM player
+      WHERE player_name = '"""+player_name+"""';
+    """)
+
+  player_sale = {}
+
+  return player_sale
+
+# ========================== get_player_profit_by_player_name ==========================
+# Récupère le profit d'un joueur
+def get_player_profit_by_player_name(player_name):
+  db_player_response = db.select("""
+      SELECT *
+      FROM player
+      WHERE player_name = '"""+player_name+"""';
+    """)
+
+  player_profit = {}
+
+  return player_profit
+
+# ========================== get_player_drinks_offered_by_player_name ==========================
+# Récupère les boissons proposées d'un joueur
+def get_player_drinks_offered_by_player_name(player_name):
+  db_player_response = db.select("""
+      SELECT *
+      FROM player
+      WHERE player_name = '"""+player_name+"""';
+    """)
+
+  player_drinks_offered = {}
+
+  return player_drinks_offered
+
+# ========================== get_player_info_by_player_name ==========================
 # Requête pour lister les items des joueur
-def get_player_info():
-  playerInfo = {}
+def get_player_info_by_player_name(player_name):
 
   db_player_response = db.select("""
       SELECT *
-      FROM player;
+      FROM player
+      WHERE player_name = '"""+player_name+"""';
     """)
 
-  # Player by player
-  #for player in db_player_response :
-    #onPlayerInfo = {
-    #  "cash" : player["player_budget"],
-    #  "sales" : ,
-    #  "profit" : ,
-    #  "drinksOffered" :
-    #}
-
-    #playerInfo[player["player_name"]] = onPlayerInfo
+    playerInfo = {
+      "cash" : player["player_budget"],
+      "sales" : get_player_sale_by_player_name(player_name),
+      "profit" : get_player_profit_by_player_name(player_name),
+      "drinksOffered" : get_player_drinks_offered_by_player_name(player_name)
+    }
 
   return playerInfo
 
-# ========================== itemsByPlayer ==========================
+# ========================== get_items_by_player_name ==========================
 # Requête pour lister les items des joueur
 def get_items_by_player_name(player_name):
 
@@ -63,11 +100,47 @@ def get_player_location_by_player_name(player_name):
 
 	return None
 
+# ========================== player_exist ==========================
+# Requête pour lister les items des joueur
+def player_exist(player_name):
 
+  db_player_response = db.select("""
+      SELECT *
+      FROM player
+      WHERE player_name = '"""+str(player_name)+"""';
+    """)
+
+  if len(db_player_response) != 0 :
+
+  	return True
+
+  else :
+
+  	return False
+
+# ========================== create_player_by_name ==========================
+# Créer un joueur
+def create_player_by_name(player_name):
+
+	db.execute("""
+		INSERT INTO player(player_budget, player_influence, player_name)
+		VALUES("""+10+""","""+1+""",'"""+str(player_name)+"""');
+		""")
+
+# ========================== players_post_request ==========================
+# Requête pour log un utilisateur
 def players_post_request(elements):
+
+	name = str(elements["name"])
+
+    if player_exist(name) == False :
+
+    	create_player_by_name(name)
+
   	response = {
-  	  "name" : elements["name"],
-  	  "location" : get_player_location_by_player_name(elements["name"]),
-  	  "info" : None
+  	  "name" : name,
+  	  "location" : get_player_location_by_player_name(name),
+  	  "info" : get_player_info_by_player_name(name)
   	}
+
 	return json.dumps(response), 200, { "Content-Type": "application/json" }
