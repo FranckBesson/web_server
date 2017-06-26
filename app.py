@@ -132,7 +132,7 @@ def map_get():
 
   # Itération sur la réponse pour alimenter le tableau
   for player in db_player_rank_response :
-    print("-- log -- " + str(player))
+    print("-- log -- player :" + str(player))
     #ranking.append(player["player_name"])
 
   # ========================== itemsByPlayer ==========================
@@ -142,7 +142,8 @@ def map_get():
       SELECT player_id, player_name\
       FROM player;\
     ")
-  
+  print("-- log -- db_player_response : "+str(db_player_response))
+
   # Player by player
   for player in db_player_response :
 
@@ -151,10 +152,12 @@ def map_get():
         FROM item_possession\
         WHERE item_possession_player_id = '"+str(player["player_id"])+"';\
       ")
+    print("-- log -- player : "+str(db_item_possession_response))
+
     # Item of player by item of player
     for item in db_item_possession_response :
 
-      print("-- log --"+str(item))
+      print("-- log -- item : "+str(item))
 
       db_item_possession_response = db.select("\
         SELECT *\
@@ -174,7 +177,9 @@ def map_get():
         "influence" : db_item_possession_response[0]["item_influence"]
       }
 
-      print(str(mapItem))
+    player["player_name"]
+
+      print("-- log -- mapItem : "+str(mapItem))
 
   db.close()
 
