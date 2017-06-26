@@ -79,7 +79,7 @@ def get_player_drinks_offered_by_player_name(player_name):
     # For this we need the produce price !!!!!!
     drink_info = {
       "name" : db_recipe_response["recipe_name"],
-      "price" ; get_recipe_produce_price_by_name(db_recipe_response["recipe_name"]),
+      "price" : get_recipe_produce_price_by_name(db_recipe_response["recipe_name"]),
       "hasAlcohol" : db_recipe_response["recipe_alcohol"],
       "isCold" : db_recipe_response["recipe_cold"]
     }
