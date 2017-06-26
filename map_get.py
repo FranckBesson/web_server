@@ -138,11 +138,12 @@ def get_drinks_by_player():
   drinksByPlayer = {
 
   }
-  
+
   return drinksByPlayer;
 
 def map_get_request():
 
+  # Récupération des valeurs
   region = get_region()
   ranking = get_ranking() 
   itemsByPlayer = get_item_by_player()
@@ -154,7 +155,7 @@ def map_get_request():
     "region" : region,
     "ranking" : ranking,
     "itemsByPlayer" : itemsByPlayer,
-    "playerInfo" : playerInfo,
+    "playerInfo" : playerinfo,
     "drinksByPlayer" : drinksByPlayer
   }
 
