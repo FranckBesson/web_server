@@ -168,6 +168,8 @@ def map_get():
       ")
     print("-- log -- player : "+str(db_item_possession_response))
 
+    items = []
+
     # Item of player by item of player
     for item in db_item_possession_response :
 
@@ -192,8 +194,9 @@ def map_get():
       }
 
       print("-- log -- mapItem : "+str(mapItem))
+      items.append(mapItem)
 
-      itemsByPlayer[str(player["player_name"])] = str(mapItem)
+    itemsByPlayer[str(player["player_name"])] = items
 
   db.close()
 
