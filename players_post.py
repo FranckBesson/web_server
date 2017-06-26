@@ -54,7 +54,7 @@ def get_recipe_produce_price_by_name(recipe_name):
 
 		cumule += (float)(db_recipe_response["recipe_price"])
 
-		return cumule
+	return cumule
 
 # ========================== get_player_drinks_offered_by_player_name ==========================
 # Récupère les boissons proposées d'un joueur
