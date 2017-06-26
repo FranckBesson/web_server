@@ -158,6 +158,7 @@ def create_player_by_name(player_name):
 		""")
 
 	location = get_new_location()
+	print(str(location))
 
 	db.execute("""
 		INSERT INTO item(item_kind, item_influence, item_x_coordinate, item_y_coordinate)
