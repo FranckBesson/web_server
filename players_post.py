@@ -10,15 +10,19 @@ db = Db()
 # ========================== get_player_sale_by_player_name ==========================
 # Récupère les vente d'un joueur
 def get_player_sale_by_player_name(player_name):
-  db_player_response = db.select("""
+  db_sale_player_response = db.select("""
       SELECT *
-      FROM player
-      WHERE player_name = '"""+player_name+"""';
+      FROM sale
+      WHERE sale_player_name = '"""+player_name+"""';
     """)
 
-  player_sale = {}
+  sales = 0
 
-  return player_sale
+  for sale in db_sale_player_response :
+
+  	sales += (int)(sale["sale_number"])
+
+  return sales
 
 # ========================== get_player_profit_by_player_name ==========================
 # Récupère le profit d'un joueur
