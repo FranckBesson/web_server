@@ -10,6 +10,7 @@ db = Db()
 # ========================== get_player_sale_by_player_name ==========================
 # Récupère les vente d'un joueur
 def get_player_sale_by_player_name(player_name):
+
   db_sale_player_response = db.select("""
       SELECT *
       FROM sale
@@ -52,6 +53,7 @@ def get_player_profit_by_player_name(player_name):
 # ========================== get_recipe_sale_price_by_name ==========================
 # Retourne le prix d'achat d'une recette
 def get_recipe_sale_price_by_name(recipe_name):
+
 	db_recipe_compose_response = db.select("""
 		SELECT recipe_price
 		FROM recipe
@@ -69,6 +71,7 @@ def get_recipe_sale_price_by_name(recipe_name):
 # ========================== get_recipe_produce_price_by_name ==========================
 # Calcule le prix de production d'une recette
 def get_recipe_produce_price_by_name(recipe_name):
+	
 	db_recipe_compose_response = db.select("""
 		SELECT compose_ingredient_recipe_name
 		FROM compose

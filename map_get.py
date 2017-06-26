@@ -63,48 +63,37 @@ def get_item_by_player():
   itemsByPlayer = {}
 
   db_player_response = db.select("""
-      SELECT player_id, player_name
+      SELECT player_name
       FROM player;
     """)
-  print("-- log -- db_player_response : "+str(db_player_response))
 
   # Player by player
   for player in db_player_response :
 
-    db_item_possession_response = db.select("\
-        SELECT item_possession_item_id\
-        FROM item_possession\
-        WHERE item_possession_player_id = '"+str(player["player_id"])+"';\
-      ")
-    print("-- log -- player : "+str(db_item_possession_response))
+    db_item_response = db.select("""
+        SELECT *
+        FROM item
+        WHERE item_owner = '"""+player["player_name"]+"""';
+      """)
 
     # Liste de items d'un joueur
     items = []
 
     # Item of player by item of player
-    for item in db_item_possession_response :
-
-      print("-- log -- item : "+str(item))
-
-      db_item_possession_response = db.select("\
-        SELECT *\
-        FROM item\
-        WHERE item_id = '"+str(item["item_possession_item_id"])+"';\
-      ")
+    for item in db_item_response :
 
       coordinates = {
-        "latitude" : db_item_possession_response[0]["item_x_coordinate"],
-        "longitude" : db_item_possession_response[0]["item_y_coordinate"]
+        "latitude" : item["item_x_coordinate"],
+        "longitude" : item["item_y_coordinate"]
       }
 
       mapItem = {
-        "kind" : db_item_possession_response[0]["item_kind"],
+        "kind" : item["item_kind"],
         "owner" : player["player_name"],
         "location" : coordinates,
-        "influence" : db_item_possession_response[0]["item_influence"]
+        "influence" : item["item_influence"]
       }
 
-      print("-- log -- mapItem : "+str(mapItem))
       items.append(mapItem)
 
     itemsByPlayer[str(player["player_name"])] = items
@@ -116,28 +105,10 @@ def get_item_by_player():
 def get_player_info():
   playerInfo = {}
 
-  db_player_response = db.select("""
-      SELECT *
-      FROM player;
-    """)
-
-  # Player by player
-  #for player in db_player_response :
-    #onPlayerInfo = {
-    #  "cash" : player["player_budget"],
-    #  "sales" : ,
-    #  "profit" : ,
-    #  "drinksOffered" :
-    #}
-
-    #playerInfo[player["player_name"]] = onPlayerInfo
-
   return playerInfo
 
 def get_drinks_by_player():
-  drinksByPlayer = {
-
-  }
+  drinksByPlayer = {}
 
   return drinksByPlayer;
 
