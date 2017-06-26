@@ -38,13 +38,11 @@ def get_player_profit_by_player_name(player_name):
 def get_player_drinks_offered_by_player_name(player_name):
   db_player_response = db.select("""
       SELECT *
-      FROM player
-      WHERE player_name = '"""+player_name+"""';
+      FROM recipe_possession
+      WHERE recipe_possession_player_name = '"""+player_name+"""';
     """)
 
-  player_drinks_offered = {}
-
-  return player_drinks_offered
+  return db_player_response
 
 # ========================== get_player_info_by_player_name ==========================
 # Requête pour lister les items des joueur
