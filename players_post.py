@@ -23,15 +23,42 @@ def get_player_sale_by_player_name(player_name):
 # ========================== get_player_profit_by_player_name ==========================
 # Récupère le profit d'un joueur
 def get_player_profit_by_player_name(player_name):
-  db_player_response = db.select("""
+
+  db_sale_player_response = db.select("""
       SELECT *
-      FROM player
-      WHERE player_name = '"""+player_name+"""';
+      FROM sale
+      WHERE sale_player_name = '"""+player_name+"""';
     """)
 
-  player_profit = {}
+  profit = 0.0
 
-  return player_profit
+  for sale in db_sale_player_response :
+
+  	# Nombre de vente sur la recette suivante
+  	sale_number = (int)(sale["sale_number"])
+
+  	sale_price = (float)(get_recipe_sale_price_by_name(sale["sale_recipe_name"]))
+
+  	profit += sale_number * sale_price
+
+  return profit
+  
+# ========================== get_recipe_sale_price_by_name ==========================
+# Retourne le prix d'achat d'une recette
+def get_recipe_sale_price_by_name(recipe_name):
+	db_recipe_compose_response = db.select("""
+		SELECT recipe_price
+		FROM recipe
+		WHERE recipe_name = '"""+recipe_name+"""';
+		""")
+
+	if len(db_recipe_compose_response) == 1
+
+		return db_recipe_compose_response[0]["recipe_price"]
+
+	else :
+
+		return None
 
 # ========================== get_recipe_produce_price_by_name ==========================
 # Calcule le prix de production d'une recette

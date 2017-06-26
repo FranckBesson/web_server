@@ -61,9 +61,10 @@ CREATE TABLE PLAYER (
 
 --==== RECIPE Table ====
 -- Create a RECIPE table, a recip is also an ingredient
+-- Price is REAL for simplify python work
 CREATE TABLE RECIPE (
     RECIPE_NAME     VARCHAR(255)    NOT NULL,
-    RECIPE_PRICE    MONEY           NOT NULL,
+    RECIPE_PRICE    REAL           NOT NULL,
     RECIPE_ALCOHOL  BOOLEAN         NOT NULL,
     RECIPE_COLD     BOOLEAN         NOT NULL,
 
