@@ -88,9 +88,15 @@ def get_player_location_by_player_name(player_name):
 	
 	items = get_items_by_player_name(player_name)
 
+	print("0")
+
 	for item in items :
 
+		print("1")
+
 		if item["item_kind"] == "STAND" :
+
+			print("2")
 
 			location = {
 			  "latitude" : item["item_x_coordinate"],
