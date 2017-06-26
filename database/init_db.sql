@@ -225,6 +225,11 @@ INSERT INTO COMPOSE VALUES('ricard (with water)','ricard');
 INSERT INTO COMPOSE VALUES('ricard (with water)','water');
 INSERT INTO COMPOSE VALUES('ricard (with water)','ice');
 
+-- Attribution de recette
+INSERT INTO RECIPE_POSSESSION VALUES('Franck','lemonade');
+INSERT INTO RECIPE_POSSESSION VALUES('Franck','ricard (with water)');
+INSERT INTO RECIPE_POSSESSION VALUES('Martin','lemonade');
+
 -- Inserion de deux jours
 INSERT INTO DAY VALUES(1,'SUNNY');
 INSERT INTO DAY VALUES(2,'CLOUDY');

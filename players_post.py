@@ -151,6 +151,7 @@ def get_new_location():
 # Créer un joueur
 def create_player_by_name(player_name):
 
+	# On créer son joueur
 	db.execute("""
 		INSERT INTO player(player_name, player_budget, player_influence)
 		VALUES('"""+str(player_name)+"""',"""+str(10)+""","""+str(1)+""");
@@ -158,10 +159,18 @@ def create_player_by_name(player_name):
 
 	location = get_new_location()
 
+	# On lui attribue un stand placé au hasard
 	db.execute("""
 		INSERT INTO item(item_kind, item_influence, item_owner, item_x_coordinate, item_y_coordinate)
 		VALUES('STAND', 1, '"""+str(player_name)+"""',"""+str(location["latitude"])+""", """+str(location["longitude"])+""");
 		""")
+
+	# On donne par défault la recette limonade
+	db.execute("""
+		INSERT INTO recipe_possession
+		VALUES('"""+str(player_name)+"""','lemonade');
+		""")
+
 
 # ========================== players_post_request ==========================
 # Requête pour log un utilisateur
