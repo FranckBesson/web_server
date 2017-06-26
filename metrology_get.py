@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # R1 Commande temps (GET)
 # Par le client web et le simulateur java
 @app.route("/metrology", methods=['GET'])
