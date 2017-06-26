@@ -34,12 +34,11 @@ class Db:
     return self.cur.lastrowid()
 
   def fetchall(self, subkeys = None):
-    rows  = self.cur.fetchall()
-    if rows != None:
-      columns = map(lambda d: d[0], self.cur.description)
-      rows = [self.describeRow(row, columns, subkeys) for row in rows]
-    else:
-      rows = []
+    rows = []
+    line = self.cur.fetchone()
+    while line != None:
+      rows.append(line)
+      line = self.cur.fetchone()
     return rows
 
   def fetchone(self, subkeys = None):
