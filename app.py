@@ -4,11 +4,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from db import Db
 import json
-from metrology_get import metrology_get
 
 app = Flask(__name__)
 app.debug = True
 CORS(app)
+
+from metrology_get import metrology_get
 
 # For parsing json in request
 def json_response(data="OK", status=200):
