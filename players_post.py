@@ -37,7 +37,7 @@ def get_player_profit_by_player_name(player_name):
 # Récupère les boissons proposées d'un joueur
 def get_player_drinks_offered_by_player_name(player_name):
 
-  db_recripe_possession_response = db.select("""
+  db_recipe_possession_response = db.select("""
       SELECT recipe_possession_recipe_name
       FROM recipe_possession
       WHERE recipe_possession_player_name = '"""+player_name+"""';
@@ -45,17 +45,17 @@ def get_player_drinks_offered_by_player_name(player_name):
 
   # Formatage des données
   drinksOffered = []
-  for recipe in db_recripe_possession_response :
+  for recipe in db_recipe_possession_response :
 
-  	db_recripe_response = db.select("""
+    db_recipe_response = db.select("""
       SELECT *
       FROM recipe
       WHERE recipe_name = '"""+recipe["recipe_possession_recipe_name"]+"""';
     """)
 
-    print(str(db_recripe_response))
+    print(str(db_recipe_response))
 
-    drinksOffered.append(db_recripe_response)
+    drinksOffered.append(db_recipe_response)
 
   return drinksOffered
 
