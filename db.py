@@ -35,10 +35,10 @@ class Db:
 
   def fetchall(self, subkeys = None):
     rows = []
-    line = self.cur.fetchone()
+    line = self.fetchone()
     while line != None:
       rows.append(line)
-      line = self.cur.fetchone()
+      line = self.fetchone()
     return rows
 
   def fetchone(self, subkeys = None):
