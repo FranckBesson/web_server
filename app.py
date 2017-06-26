@@ -181,10 +181,6 @@ def map_get():
 
   db.close()
 
-  
-
-  
-
   # C'est la merde là
   itemsByPlayer = {
 
