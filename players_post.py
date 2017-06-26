@@ -37,24 +37,24 @@ def get_player_profit_by_player_name(player_name):
 # Calcule le prix de production d'une recette
 def get_recipe_produce_price_by_name(recipe_name):
 	db_recipe_compose_response = db.select("""
-      SELECT compose_ingredient_recipe_name
-      FROM compose
-      WHERE compose_recipe_name = '"""+recipe_name+"""';
-    """)
+		SELECT compose_ingredient_recipe_name
+		FROM compose
+		WHERE compose_recipe_name = '"""+recipe_name+"""';
+		""")
 
 	cumule = 0
 
-    for recipe in db_recipe_possession_response :
+	for recipe in db_recipe_possession_response :
 
-    	db_recipe_response = db.select("""
-      		SELECT recipe_price
-      		FROM recipe
-      		WHERE recipe_name = '"""+recipe["compose_ingredient_recipe_name"]+"""';
-    	""")
+		db_recipe_response = db.select("""
+			SELECT recipe_price
+			FROM recipe
+			WHERE recipe_name = '"""+recipe["compose_ingredient_recipe_name"]+"""';
+			""")
 
-    	cumule += (float)(db_recipe_response["recipe_price"])
+		cumule += (float)(db_recipe_response["recipe_price"])
 
-    return cumule
+		return cumule
 
 # ========================== get_player_drinks_offered_by_player_name ==========================
 # Récupère les boissons proposées d'un joueur
