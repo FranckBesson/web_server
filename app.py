@@ -177,8 +177,6 @@ def map_get():
         "influence" : db_item_possession_response[0]["item_influence"]
       }
 
-    player["player_name"]
-
       print("-- log -- mapItem : "+str(mapItem))
 
   db.close()
