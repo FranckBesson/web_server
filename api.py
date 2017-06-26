@@ -349,10 +349,20 @@ def get_item_by_player():
 
   return itemsByPlayer
 
-# ========================== playerinfo ==========================
-# Requête pour lister les items des joueur
+# ========================== get_player_info ==========================
+# Requête pour lister les info des joueurs
 def get_player_info():
+
   playerInfo = {}
+
+  db_player_response = db.select("""
+    SELECT *
+    FROM player;
+  """)
+
+  for player in db_player_response :
+
+    playerInfo[player["player_name"]] = get_player_info_by_player_name(player["player_name"])
 
   return playerInfo
 
