@@ -55,12 +55,12 @@ def get_player_info_by_player_name(player_name):
       WHERE player_name = '"""+player_name+"""';
     """)
 
-    playerInfo = {
-      "cash" : player["player_budget"],
-      "sales" : get_player_sale_by_player_name(player_name),
-      "profit" : get_player_profit_by_player_name(player_name),
-      "drinksOffered" : get_player_drinks_offered_by_player_name(player_name)
-    }
+  playerInfo = {
+    "cash" : player["player_budget"],
+    "sales" : get_player_sale_by_player_name(player_name),
+    "profit" : get_player_profit_by_player_name(player_name),
+    "drinksOffered" : get_player_drinks_offered_by_player_name(player_name)
+  }
 
   return playerInfo
 
