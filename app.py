@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from db import Db
 import json
-import metrology_get
+from metrology_get import metrology_get
 
 app = Flask(__name__)
 app.debug = True
