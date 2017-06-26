@@ -44,7 +44,7 @@ def get_recipe_produce_price_by_name(recipe_name):
 
 	cumule = 0
 
-	for recipe in db_recipe_possession_response :
+	for recipe in db_recipe_compose_response :
 
 		db_recipe_response = db.select("""
 			SELECT recipe_price
