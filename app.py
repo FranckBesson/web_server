@@ -128,7 +128,7 @@ def map_get():
     """)
 
   # Player by player
-  for player in db_player_response :
+  #for player in db_player_response :
     #onPlayerInfo = {
     #  "cash" : player["player_budget"],
     #  "sales" : ,
