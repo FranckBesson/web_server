@@ -3,12 +3,11 @@
 from db import Db
 import json
 
-def map_get_request():
-  
-  db = Db()
+db = Db()
+# ========================== Region ==========================
+# Requête pour connaitre lse infomrations de la map
 
-  # ========================== Region ==========================
-  # Requête pour connaitre lse infomrations de la map
+def get_region():
   db_map_response = db.select("\
       SELECT * FROM map;\
     ")
@@ -33,9 +32,13 @@ def map_get_request():
     "span" : coordinatesSpan
   }
 
-  # ========================== Ranking ==========================
-  # Requête pour lister les joueur du plus riche au moins riche
-  # !!!!!!!!!!!! Bug ici on ne nous retourne pas tout !
+  return region
+
+# ========================== Ranking ==========================
+# Requête pour lister les joueur du plus riche au moins riche
+
+def get_ranking():
+  
   db_player_rank_response = db.select("\
       SELECT player_name , RANK() OVER(ORDER BY PLAYER_BUDGET DESC) AS rank\
       FROM player;\
@@ -51,8 +54,11 @@ def map_get_request():
     print("-- log -- player :" + str(player))
     ranking.append(player["player_name"])
 
-  # ========================== itemsByPlayer ==========================
-  # Requête pour lister les items des joueur
+  return ranking
+
+# ========================== itemsByPlayer ==========================
+# Requête pour lister les items des joueur
+def get_item_by_player():
 
   itemsByPlayer = {}
 
@@ -103,6 +109,17 @@ def map_get_request():
 
     itemsByPlayer[str(player["player_name"])] = items
 
+  return itemsByPlayer
+
+def map_get_request():
+  
+  
+
+  region = get_region()
+  ranking = get_ranking() 
+  itemsByPlayer = get_item_by_player()
+  
+
   # ========================== playerinfo ==========================
   # Requête pour lister les items des joueur
   
@@ -123,8 +140,6 @@ def map_get_request():
     #}
 
     #playerInfo[player["player_name"]] = onPlayerInfo
-
-  db.close()
 
 
 
