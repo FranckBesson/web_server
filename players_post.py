@@ -53,6 +53,8 @@ def get_player_drinks_offered_by_player_name(player_name):
       WHERE recipe_name = '"""+recipe["recipe_possession_recipe_name"]+"""';
     """)
 
+    print(str(db_recripe_response))
+
     drinksOffered.append(db_recripe_response)
 
   return drinksOffered
