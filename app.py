@@ -150,6 +150,8 @@ def map_get():
   # ========================== itemsByPlayer ==========================
   # Requête pour lister les items des joueur
 
+  itemsByPlayer = {}
+
   db_player_response = db.select("""
       SELECT player_id, player_name
       FROM player;
@@ -191,12 +193,12 @@ def map_get():
 
       print("-- log -- mapItem : "+str(mapItem))
 
+      itemsByPlayer[str(player["player_name"])] = str(mapItem)
+
   db.close()
 
   # C'est la merde là
-  itemsByPlayer = {
-
-  }
+  
 
   # C'est la merde là
   playerInfo = {
