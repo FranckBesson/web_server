@@ -34,12 +34,14 @@ def get_player_profit_by_player_name(player_name):
 
   for sale in db_sale_player_response :
 
-  	# Nombre de vente sur la recette suivante
+  	# Récupère les données pour le calcul
   	sale_number = (int)(sale["sale_number"])
+  	sale_produce = (int)(sale["sale_produce"])
+  	sale_recipe_price = (float)(get_recipe_sale_price_by_name(sale["sale_recipe_name"]))
+  	sale_recipe_produce_price = (float)(get_recipe_produce_price_by_name(sale["sale_recipe_name"]))
 
-  	sale_price = (float)(get_recipe_sale_price_by_name(sale["sale_recipe_name"]))
-
-  	profit += sale_number * sale_price
+  	# Calcul le profit
+  	profit += sale_number * sale_recipe_price - sale_produce * sale_recipe_produce_price
 
   return profit
 

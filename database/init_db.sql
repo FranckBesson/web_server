@@ -51,9 +51,10 @@ CREATE TABLE ITEM (
 
 --==== PLAYER Table ====
 -- Create a PLAYER table
+-- PLAYER_BUDGET is REAL for simplify python work
 CREATE TABLE PLAYER (
     PLAYER_NAME         VARCHAR(255)    NOT NULL,
-    PLAYER_BUDGET       MONEY           NOT NULL,
+    PLAYER_BUDGET       REAL           NOT NULL,
     PLAYER_INFLUENCE    REAL            NOT NULL,
     
     CONSTRAINT PK_PLAYER PRIMARY KEY(PLAYER_NAME)
