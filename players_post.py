@@ -42,7 +42,7 @@ def get_player_profit_by_player_name(player_name):
   	profit += sale_number * sale_price
 
   return profit
-  
+
 # ========================== get_recipe_sale_price_by_name ==========================
 # Retourne le prix d'achat d'une recette
 def get_recipe_sale_price_by_name(recipe_name):
@@ -52,7 +52,7 @@ def get_recipe_sale_price_by_name(recipe_name):
 		WHERE recipe_name = '"""+recipe_name+"""';
 		""")
 
-	if len(db_recipe_compose_response) == 1
+	if len(db_recipe_compose_response) == 1 :
 
 		return db_recipe_compose_response[0]["recipe_price"]
 
@@ -262,3 +262,4 @@ def players_post_request(elements):
   }
 
   return json.dumps(response), 200, { "Content-Type": "application/json" }
+
