@@ -7,6 +7,13 @@ import json
 
 from metrology_get import metrology_get_request
 from map_get import map_get_request
+from sales_post import sales_post_request
+from players_post import players_post_request
+from map_playername_get import map_playername_get_request
+from actions_playername_post import actions_playername_post_request
+from metrology_post import metrology_post_request
+from reset_get import reset_get_request
+from ingredients_get import ingredients_get_request
 
 app = Flask(__name__)
 app.debug = True
@@ -32,129 +39,43 @@ def map_get():
 # Par le simulateur Java
 @app.route("/sales", methods=['POST'])
 def sales_post():
-  elements = request.get_json()
-  print(str(elements))
-  return json_response(elements)
+  return sales_post_request(request.get_json())
 
 # R4 Quitter/Rejoindre une partie
 # Par client web
 @app.route("/players", methods=['POST'])
 def players_post():
-  elements = request.get_json()
-  print(str(elements))
-  return jsonify(json.loads(open('exemple4.json').read()))
+  return players_post_request(request.get_json())
 
 # R5 Obtenir les détails d'une parie
 # Par le client web
 @app.route("/map/<playerName>", methods=['GET'])
 def map_playername_get(playerName):
-  print(str(playerName))
-  return jsonify(json.loads(open('exemple5.json').read()))
+  return map_playername_get_request()
 
 # R6 Instruction du joueur pour le jour suivant
 # Par le client web
 @app.route("/actions/<playerName>", methods=['POST'])
 def actions_playername_post(playerName):
-  elements = request.get_json()
-  print(str(playerName))
-  print(str(elements))
-
-  return jsonify(json.loads(open('exemple6.json').read()))
+  return actions_playername_post_request(request.get_json())
 
 # R7 Commande temps (POST)
 # Par le programme c
 @app.route("/metrology", methods=['POST'])
 def metrology_post():
-  elements = request.get_json()
-
-  print("-- log -- elements : " + str(elements))
-  print("-- log -- timestamp : " + str(elements["timestamp"]))
-  weather = str(elements["weather"]["weather"])
-  print("-- log -- weather : " + weather)
-
-  db = Db()
-
-  jour_actuel = (int)((int)(elements["timestamp"])/24)
-  print(str(jour_actuel))
-
-  
-  # Jour courrant
-  if elements["weather"]["dfn"] == "0" :
-
-    print("current day")
-
-    row = db.select("\
-      SELECT * FROM DAY\
-      WHERE DAY_NUMBER = "+str(jour_actuel)+";\
-    ")
-
-    print(str(row))
-
-    if len(row) == 0 :
-
-      db.execute("\
-        INSERT INTO DAY\
-        VALUES("+str(jour_actuel)+",\'"+str(weather)+"\');\
-      ")
-
-    else :
-
-      db.execute("\
-        UPDATE DAY SET DAY_WEATHER = \'"+str(weather)+"\'\
-        WHERE DAY_NUMBER = "+str(jour_actuel)+";\
-      ")
-
-  # Jour suivant
-  elif elements["weather"]["dfn"] == "1" :
-
-    print("day after")
-
-    row = db.select("\
-      SELECT * FROM DAY\
-      WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
-    ")
-
-    print(str(row))
-
-    if len(row) == 0 :
-
-      db.execute("\
-        INSERT INTO DAY\
-        VALUES("+str(jour_actuel+1)+",\'"+str(weather)+"\');\
-      ")
-
-    else :
-
-      db.execute("\
-        UPDATE DAY SET DAY_WEATHER = \'"+str(weather)+"\'\
-        WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
-      ")
-
-  #Sauvegarde du timestamp
-  db.execute("\
-        DELETE FROM TIME;\
-      ")
-
-  db.execute("\
-        INSERT INTO TIME\
-        VALUES("+str(elements["timestamp"])+");\
-      ")
-
-  db.close()
-
-  return json_response()
+  return metrology_post_request(request.get_json())
 
 # R8 Réinitialiser une partie (GET)
 # Par le client web
 @app.route("/reset", methods=['GET'])
 def reset_get():
-  return json_response()
+  return reset_get_request()
 
 # R9 Obtenir la liste des ingrédients
 # Par le client web
 @app.route("/ingredients", methods=['GET'])
 def ingredients_get():
-  return jsonify(json.loads(open('exemple9.json').read()))
+  return ingredients_get_request()
 
 if __name__ == "__main__" :
    app.run()
