@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from db import Db
 import json
+from metrology_get import metrology_get_request
 
 app = Flask(__name__)
 app.debug = True
@@ -14,6 +15,12 @@ from metrology_get import metrology_get
 # For parsing json in request
 def json_response(data="OK", status=200):
   return json.dumps(data), status, { "Content-Type": "application/json" }
+
+# R1 Commande temps (GET)
+# Par le client web et le simulateur java
+@app.route("/metrology", methods=['GET'])
+def metrology_get():
+  return metrology_get_request()
 
 # R2 Obtenir les détails d'une partie
 # Par le simulateur Java

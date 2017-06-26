@@ -1,12 +1,10 @@
 # coding=utf-8
 
-app = Flask(__name__)
+from db import Db
+import json
 
-# R1 Commande temps (GET)
-# Par le client web et le simulateur java
-@app.route("/metrology", methods=['GET'])
-def metrology_get():
-  
+def metrology_get_request():
+
   db = Db()
 
   # Requête pour connaitre le jour actuel
@@ -73,4 +71,4 @@ def metrology_get():
 
   db.close()
   
-  return json_response(response)
+  return json.dumps(response), 200, { "Content-Type": "application/json" }
