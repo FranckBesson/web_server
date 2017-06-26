@@ -44,11 +44,6 @@ def get_items_by_player_name(player_name):
       WHERE item_possession_player_id = '"+str(db_player_response[0]["player_id"])+"';\
     ")
 
-  # Liste de items d'un joueur
-  items = []
-
-    items.append(item)
-
   return db_item_possession_response
 
 def get_player_location_by_player_name(player_name):
