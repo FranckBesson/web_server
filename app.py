@@ -84,6 +84,16 @@ def metrology_get():
   
   return json_response(response)
 
+@app.route('/map-debug')
+def map_debug():
+  db = Db()
+  db_player_response = db.select("""
+      SELECT player_id, player_name
+      FROM player;
+    """)
+  db.close()
+  return str(db_player_response) 
+
 # R2 Obtenir les détails d'une partie
 # Par le simulateur Java
 @app.route("/map", methods=['GET'])
@@ -138,10 +148,10 @@ def map_get():
   # ========================== itemsByPlayer ==========================
   # Requête pour lister les items des joueur
 
-  db_player_response = db.select("\
-      SELECT player_id, player_name\
-      FROM player;\
-    ")
+  db_player_response = db.select("""
+      SELECT player_id, player_name
+      FROM player;
+    """)
   print("-- log -- db_player_response : "+str(db_player_response))
 
   # Player by player
