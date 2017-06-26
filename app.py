@@ -145,7 +145,7 @@ def map_get():
   # Itération sur la réponse pour alimenter le tableau
   for player in db_player_rank_response :
     print("-- log -- player :" + str(player))
-    #ranking.append(player["player_name"])
+    ranking.append(player["player_name"])
 
   # ========================== itemsByPlayer ==========================
   # Requête pour lister les items des joueur
