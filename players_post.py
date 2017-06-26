@@ -88,7 +88,7 @@ def get_player_location_by_player_name(player_name):
 	
 	items = get_items_by_player_name(player_name)
 
-	print(str(get_items_by_player_name))
+	print(str(items))
 
 	for item in items :
 
