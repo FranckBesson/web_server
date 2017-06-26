@@ -52,7 +52,7 @@ def get_recipe_produce_price_by_name(recipe_name):
 			WHERE recipe_name = '"""+recipe["compose_ingredient_recipe_name"]+"""';
 			""")
 
-		cumule += (float)(db_recipe_response["recipe_price"])
+		cumule += (float)(db_recipe_response[0]["recipe_price"])
 
 	return cumule
 
