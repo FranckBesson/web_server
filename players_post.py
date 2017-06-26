@@ -1,5 +1,5 @@
 # coding=utf-8
-import api
+from api import *
 import json
 
 # ========================== players_post_request ==========================
