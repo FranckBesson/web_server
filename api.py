@@ -369,4 +369,13 @@ def get_player_info():
 def get_drinks_by_player():
   drinksByPlayer = {}
 
+  db_player_response = db.select("""
+    SELECT *
+    FROM player;
+  """)
+
+  for player in db_player_response :
+
+    drinksByPlayer[player["player_name"]] = get_player_drinks_offered_by_player_name(player["player_name"])
+
   return drinksByPlayer;
