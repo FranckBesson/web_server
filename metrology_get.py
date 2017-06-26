@@ -1,5 +1,7 @@
 # coding=utf-8
 
+app = Flask(__name__)
+
 # R1 Commande temps (GET)
 # Par le client web et le simulateur java
 @app.route("/metrology", methods=['GET'])
