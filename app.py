@@ -75,7 +75,7 @@ def reset_get():
 # Par le client web
 @app.route("/ingredients", methods=['GET'])
 def ingredients_get():
-  return ingredients_get_request()
+  return ingredients_get_request()  
 
 if __name__ == "__main__" :
    app.run()

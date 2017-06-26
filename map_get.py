@@ -111,18 +111,9 @@ def get_item_by_player():
 
   return itemsByPlayer
 
-def map_get_request():
-  
-  
-
-  region = get_region()
-  ranking = get_ranking() 
-  itemsByPlayer = get_item_by_player()
-  
-
-  # ========================== playerinfo ==========================
-  # Requête pour lister les items des joueur
-  
+# ========================== playerinfo ==========================
+# Requête pour lister les items des joueur
+def get_player_info():
   playerInfo = {}
 
   db_player_response = db.select("""
@@ -141,12 +132,22 @@ def map_get_request():
 
     #playerInfo[player["player_name"]] = onPlayerInfo
 
+  return playerInfo
 
-
-  # C'est la merde là
+def get_drinks_by_player():
   drinksByPlayer = {
 
   }
+  
+  return drinksByPlayer;
+
+def map_get_request():
+
+  region = get_region()
+  ranking = get_ranking() 
+  itemsByPlayer = get_item_by_player()
+  playerinfo = get_player_info()
+  drinksByPlayer = get_drinks_by_player()
 
   # Création de la map _map
   _map = {
