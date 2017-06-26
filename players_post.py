@@ -70,16 +70,10 @@ def get_player_info_by_player_name(player_name):
 # Requête pour lister les items des joueur
 def get_items_by_player_name(player_name):
 
-  db_player_response = db.select("""
-      SELECT *
-      FROM player
-      WHERE player_name = '"""+str(player_name)+"""';
-    """)
-
-  db_item_possession_response = db.select("\
-      SELECT item_possession_item_id\
-      FROM item_possession\
-      WHERE item_possession_player_id = '"+str(db_player_response[0]["player_id"])+"';\
+  db_items_by_player_response = db.select("\
+      SELECT *\
+      FROM item\
+      WHERE item_owner = '"+str(player_name)+"';\
     ")
 
   return db_item_possession_response
@@ -88,20 +82,27 @@ def get_items_by_player_name(player_name):
 # Récupère la position par player_name
 def get_player_location_by_player_name(player_name):
 	
-	items = get_items_by_player_name(player_name)
+  db_stand_response = db.select("\
+      SELECT item_x_coordinate, item_y_coordinate\
+      FROM item\
+      WHERE item_owner = '"+str(player_name)+"' AND item_kind = 'STAND';\
+    ")
 
-	for item in items :
+  location = {
+      "latitude" : None,
+      "longitude" : None
+  }
 
-		if item["item_kind"] == "STAND" :
+  if len(db_stand_response) == 1 :
 
-			location = {
-			  "latitude" : item["item_x_coordinate"],
-			  "longitude" : item["item_y_coordinate"]
-			}
+    item = db_stand_response[0]
 
-	        return location
+    location = {
+      "latitude" : item["item_x_coordinate"],
+      "longitude" : item["item_y_coordinate"]
+    }
 
-	return None
+  return location
 
 # ========================== player_exist ==========================
 # Requête pour lister les items des joueur
@@ -153,15 +154,15 @@ def get_new_location():
 def create_player_by_name(player_name):
 
 	db.execute("""
-		INSERT INTO player(player_budget, player_influence, player_name)
-		VALUES("""+str(10)+""","""+str(1)+""",'"""+str(player_name)+"""');
+		INSERT INTO player(player_name, player_budget, player_influence)
+		VALUES('"""+str(player_name)+"""',"""+str(10)+""","""+str(1)+""");
 		""")
 
 	location = get_new_location()
 
 	db.execute("""
-		INSERT INTO item(item_kind, item_influence, item_x_coordinate, item_y_coordinate)
-		VALUES('STAND', 1,"""+str(location["latitude"])+""", """+str(location["longitude"])+""");
+		INSERT INTO item(item_kind, item_influence, item_owner, item_x_coordinate, item_y_coordinate)
+		VALUES('STAND', 1, """+str(player_name)+""","""+str(location["latitude"])+""", """+str(location["longitude"])+""");
 		""")
 
 # ========================== players_post_request ==========================
