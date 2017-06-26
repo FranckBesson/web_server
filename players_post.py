@@ -124,7 +124,7 @@ def create_player_by_name(player_name):
 
 	db.execute("""
 		INSERT INTO player(player_budget, player_influence, player_name)
-		VALUES("""+10+""","""+1+""",'"""+str(player_name)+"""');
+		VALUES("""+str(10)+""","""+str(1)+""",'"""+str(player_name)+"""');
 		""")
 
 # ========================== players_post_request ==========================
