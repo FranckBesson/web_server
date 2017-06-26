@@ -75,7 +75,6 @@ def get_items_by_player_name(player_name):
       WHERE player_name = '"""+str(player_name)+"""';
     """)
 
-
   db_item_possession_response = db.select("\
       SELECT item_possession_item_id\
       FROM item_possession\
@@ -84,19 +83,15 @@ def get_items_by_player_name(player_name):
 
   return db_item_possession_response
 
+# ========================== get_player_location_by_player_name ==========================
+# Récupère la position par player_name
 def get_player_location_by_player_name(player_name):
 	
 	items = get_items_by_player_name(player_name)
 
-	print(str(items))
-
 	for item in items :
 
-		print("1")
-
 		if item["item_kind"] == "STAND" :
-
-			print("2")
 
 			location = {
 			  "latitude" : item["item_x_coordinate"],
@@ -125,6 +120,33 @@ def player_exist(player_name):
 
   	return False
 
+# ========================== get_new_location ==========================
+# renvoie une nouvelle coordée dans la map qui n'est pas déjà attribuée
+def get_new_location():
+
+  # db_item_response = db.select("""
+  #   SELECT item_x_coordinate, item_y_coordinate
+  #   FROM item;
+  # """)
+
+  db_map_response = db.select("""
+    SELECT *
+    FROM map;
+  """)
+
+  span_x = db_map_response[0]["map_span_x"]
+  span_y = db_map_response[0]["map_span_y"]
+
+  x_rand = random.random() * span_x
+  y_rand = random.random() * span_y
+
+  location = {
+  	"latitude" : x_rand,
+  	"longitude" : y_rand
+  }
+
+  return location
+
 # ========================== create_player_by_name ==========================
 # Créer un joueur
 def create_player_by_name(player_name):
@@ -132,6 +154,13 @@ def create_player_by_name(player_name):
 	db.execute("""
 		INSERT INTO player(player_budget, player_influence, player_name)
 		VALUES("""+str(10)+""","""+str(1)+""",'"""+str(player_name)+"""');
+		""")
+
+	location = get_new_location()
+
+	db.execute("""
+		INSERT INTO item(item_kind, item_influence, item_x_coordinate, item_y_coordinate)
+		VALUES('STAND', 1,"""+str(location["item_x_coordinate"])+""", """+str(location["item_y_coordinate"])+""");
 		""")
 
 # ========================== players_post_request ==========================
