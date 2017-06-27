@@ -4,7 +4,7 @@ from db import Db
 import json
 
 def ingredients_get_request():
-	int i =0
+	i =0
 
 	db_recipe_response = db.select("""
         SELECT *
