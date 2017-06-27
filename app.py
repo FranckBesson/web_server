@@ -35,7 +35,6 @@ def metrology_get():
 def map_get():
   return map_get_request()
   
-
 # R3 Commande "simulateur"
 # Par le simulateur Java
 @app.route("/sales", methods=['POST'])

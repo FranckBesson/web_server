@@ -10,7 +10,8 @@ def metrology_post_request(elements):
   db = Db()
 
   jour_actuel = (int)((int)(elements["timestamp"])/24)
-  
+  print(str(jour_actuel))
+
   for weather in forcast :
 
     print("-- log--"+str(weather))
