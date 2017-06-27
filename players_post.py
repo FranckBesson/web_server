@@ -10,6 +10,8 @@ def players_post_request(elements):
 
   if player_exist(name) == False :
 
+  i = 0
+  
     while i < 1500 :
 
         new_name = name + i + "e"
