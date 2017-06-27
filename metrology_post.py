@@ -38,16 +38,16 @@ def metrology_post_request(elements):
 
         db.execute("""
           UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"])+"""'
-          WHERE DAY_NUMBER = '+str(jour_actuel)+';
+          WHERE DAY_NUMBER = """+str(jour_actuel)+""";
         """)
   
     # Jour suivant
     elif weather["dfn"] == "1" :
     
-      row = db.select("\
-        SELECT * FROM DAY\
-        WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
-      ")
+      row = db.select(""""
+        SELECT * FROM DAY
+        WHERE DAY_NUMBER = """+str(jour_actuel+1)+"""";
+      """)
   
       if len(row) == 0 :
   
