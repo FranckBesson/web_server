@@ -99,8 +99,8 @@ def actions_playername_post_request(elements, playerName):
                     UPDATE SALE
                     SET sale_number = """+sale_number+""", sale_produce = """+sale_produce+""", sale_recipe_price = """+sale_recipe_price+"""
                     WHERE sale_day_number = """+sale_day_number+"""
-                    AND sale_recipe_name = """+sale_recipe_name+"""
-                    AND sale_player_name = """+sale_player_name+""";
+                    AND sale_recipe_name = '"""+sale_recipe_name+"""'
+                    AND sale_player_name = '"""+sale_player_name+"""';
                 """)
 
 
