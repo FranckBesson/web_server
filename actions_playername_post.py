@@ -49,16 +49,16 @@ def actions_playername_post_request(elements, playerName):
             
     elif player_action["kind"] == "ad" :
 
-        db.execute("""
-            INSERT INTO item
-            VALUES('AD', """+player_action["radius"]+""",'"""str(playerName)+"""',"""+player_action["location"]["latitude"]+""","""+player_action["location"]["longitude"]+""");
-        """)
+        # db.execute("""
+        #     INSERT INTO item
+        #     VALUES('AD', """+player_action["radius"]+""",'"""str(playerName)+"""',"""+player_action["location"]["latitude"]+""","""+player_action["location"]["longitude"]+""");
+        # """)
 
     elif player_action["kind"] == "drinks" :
 
-        #db.execute("""
-        #   INSERT INTO SALE
-        #   VALUES("""+get_current_day_number()+""",'"""+player_action["prepare"][""]+"""','"""+str(playerName)+"""',"""+player_action[""]+""",);
-        #""")
+        # db.execute("""
+        #    INSERT INTO SALE
+        #    VALUES("""+get_current_day_number()+""",'"""+player_action["prepare"][""]+"""','"""+str(playerName)+"""',"""+player_action[""]+""",);
+        # """)
 
     return json.dumps(""), 200, { "Content-Type": "application/json" }
