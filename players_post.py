@@ -10,7 +10,10 @@ def players_post_request(elements):
 
   if player_exist(name) == False :
 
-    create_player_by_name(name)
+  	while i <= 1500 :
+
+    	create_player_by_name(name+str(i))
+
 
   response = {
     "name" : name,
