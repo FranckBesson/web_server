@@ -12,8 +12,11 @@ def players_post_request(elements):
 
   	while i <= 1500 :
 
-    	create_player_by_name(name+str(i))
+    	create_player_by_name(str(name+str(i)))
 
+    	i = i +1
+    
+    print("ouf")
 
   response = {
     "name" : name,
