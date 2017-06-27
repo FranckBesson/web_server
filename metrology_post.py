@@ -24,7 +24,7 @@ def metrology_post_request(elements):
   
       if len(row) == 0 :
         
-        print("-- log-- insert with dfn at 0")
+        print("-- log-- insert with dfn at 0 : "+str(row))
 
         db.execute("\
           INSERT INTO DAY\
