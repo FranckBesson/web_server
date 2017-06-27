@@ -48,7 +48,7 @@ def actions_playername_post_request(elements, playerName):
                 """)
             
 
-        elif player_action["kind"] == "ad" :
+        else if player_action["kind"] == "ad" :
 
             db.execute("""
                 INSERT INTO item
