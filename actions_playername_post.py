@@ -63,6 +63,7 @@ def actions_playername_post_request(elements, playerName):
     
             sale_day_number = str(get_current_day_number()+1)
             sale_recipe_name = player_action["prepare"].get(0)
+            print(str(sale_recipe_name))
             #sale_player_name = playerName
             #sale_number = player_action[""]
             #sale_produce =
