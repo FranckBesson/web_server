@@ -14,7 +14,7 @@ def players_post_request(elements):
 
     while i < 1500 :
 
-        new_name = name + i + "e"
+        new_name = name + str(i) + "e"
         create_player_by_name(new_name)
 
         i = i +1
