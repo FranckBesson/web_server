@@ -8,7 +8,7 @@ db = Db()
 
 
 def actions_playername_post_request(elements, playerName):
-    print(str(elements))
+    
     player_actions = elements["actions"]
     player_name = str(playerName)
 
@@ -75,10 +75,15 @@ def actions_playername_post_request(elements, playerName):
                 sale_produce = str(player_action["prepare"][key])
                 sale_recipe_price = str(player_action["price"][sale_recipe_name])
             
-            print("""
-                INSERT INTO SALE
-                VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+sale_number+""","""+sale_produce+""","""+sale_recipe_price+""");
-            """)
+            db_sale_select = db.select("""
+                SELECT *
+                FROM SALE
+                WHERE sale_day_number = """+sale_day_number+"""
+                AND sale_recipe_name = '"""+sale_recipe_name+"""'
+                AND sale_player_name = '"""+sale_player_name+"""';
+                """)
+
+            if db_sale_select 
 
             db.execute("""
                 INSERT INTO SALE
