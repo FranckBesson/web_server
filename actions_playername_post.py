@@ -62,20 +62,24 @@ def actions_playername_post_request(elements, playerName):
         elif player_action["kind"] == "drinks" :
     
             sale_day_number = str(get_current_day_number()+1)
-            sale_recipe_name = player_action["prepare"].get(0)
-            print(str(player_action["prepare"]))
+            sale_recipe_name = ""
+            sale_produce = 0
+            sale_player_name = playerName
+            sale_number = 0
+            sale_recipe_price = 0
 
+            # Technique certainement gitanne et précaire mais d'apoint
             for key in player_action["prepare"]:
-                print "key: %s , value: %s" % (key, player_action["prepare"][key])
 
-            #sale_player_name = playerName
-            #sale_number = player_action[""]
-            #sale_produce =
-            #sale_recipe_price =
+                sale_recipe_name = key
+                sale_produce = player_action["prepare"][key]
+                player_action["price"][sale_recipe_name]:            
+            
+            sale_recipe_price =
     
-            #db.execute("""
-            #    INSERT INTO SALE
-            #    VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+player_action[""]+""","""+sale_produce+""","""+sale_recipe_price+""");
-            # """)
+            db.execute("""
+                INSERT INTO SALE
+                VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+player_action[""]+""","""+sale_produce+""","""+sale_recipe_price+""");
+            """)
     
     return json.dumps(""), 200, { "Content-Type": "application/json" }
