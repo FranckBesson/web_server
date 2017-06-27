@@ -8,7 +8,7 @@ db = Db()
 
 
 def actions_playername_post_request(elements, playerName):
-    
+
     player_actions = elements["actions"]
     player_name = str(playerName)
 
@@ -83,11 +83,12 @@ def actions_playername_post_request(elements, playerName):
                 AND sale_player_name = '"""+sale_player_name+"""';
                 """)
 
-            if db_sale_select 
+            if len(db_sale_select) == 0 :
 
-            db.execute("""
-                INSERT INTO SALE
-                VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+sale_number+""","""+sale_produce+""","""+sale_recipe_price+""");
-            """)
-    
+                db.execute("""
+                    INSERT INTO SALE
+                    VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+sale_number+""","""+sale_produce+""","""+sale_recipe_price+""");
+                """)
+
+
     return json.dumps(""), 200, { "Content-Type": "application/json" }
