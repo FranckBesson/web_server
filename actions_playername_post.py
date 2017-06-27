@@ -52,10 +52,11 @@ def actions_playername_post_request(elements, playerName):
         latitude = player_action["location"]["latitude"]
         longitude = player_action["location"]["longitude"]
         radius = player_action["radius"]
+        player_name = str(playerName)
 
         db.execute("""
              INSERT INTO item
-             VALUES('AD', """+radius+""",'"""playerName+"""',"""+latitude+""","""+longitude+""");
+             VALUES('AD', """+radius+""",'"""player_name+"""',"""+latitude+""","""+longitude+""");
         """)
 
     # elif player_action["kind"] == "drinks" :
