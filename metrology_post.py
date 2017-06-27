@@ -27,19 +27,19 @@ def metrology_post_request(elements):
         
         print("-- log-- insert with dfn at 0 : "+str(row))
 
-        db.execute("\
-          INSERT INTO DAY\
-          VALUES("+str(jour_actuel)+",\'"+str(weather["weather"])+"\');\
-        ")
+        db.execute("""
+          INSERT INTO DAY
+          VALUES("""+str(jour_actuel)+""",'"""+str(weather["weather"])+"""');
+        """)
   
       else :
 
         print("-- log-- update with dfn at 0")
 
-        db.execute("\
-          UPDATE DAY SET DAY_WEATHER = \'"+str(weather["weather"])+"\'\
-          WHERE DAY_NUMBER = "+str(jour_actuel)+";\
-        ")
+        db.execute("""
+          UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"])+"""'
+          WHERE DAY_NUMBER = '+str(jour_actuel)+';
+        """)
   
     # Jour suivant
     elif weather["dfn"] == "1" :
@@ -53,19 +53,19 @@ def metrology_post_request(elements):
   
         print("-- log-- insert with dfn at 1")
 
-        db.execute("\
-          INSERT INTO DAY\
-          VALUES("+str(jour_actuel+1)+",\'"+str(weather["weather"])+"\');\
-        ")
+        db.execute("""
+          INSERT INTO DAY
+          VALUES("""+str(jour_actuel+1)+""",'"""+str(weather["weather"])+"""');
+        """)
   
       else :
   
         print("-- log-- update with dfn at 1")
 
-        db.execute("\
-          UPDATE DAY SET DAY_WEATHER = \'"+str(weather["weather"])+"\'\
-          WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
-        ")
+        db.execute("""
+          UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"])+"""'
+          WHERE DAY_NUMBER = """+str(jour_actuel+1)+""";
+        """)
   
     #Sauvegarde du timestamp
     db.execute("\
