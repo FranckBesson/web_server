@@ -8,58 +8,59 @@ db = Db()
 
 
 def actions_playername_post_request(elements, playerName):
-  	player_action = elements["actions"]
+    player_action = elements["actions"]
+    player_name = str(playerName)
 
-  	if player_action["kind"] == "recipe" :
+    if player_action["kind"] == "recipe" :
 
-  		recipe = player_action["recipe"]
+        recipe = player_action["recipe"]
 
-  		recipe_alcohol = "false"
+        recipe_alcohol = "false"
 
-  		recipe_cold = "false"
+        recipe_cold = "false"
 
-  		for ingredient in recipe["ingredients"]
+        for ingredient in recipe["ingredients"] :
 
-  			if (ingredient["hasAlcohol"]).lower() == "true" :
+            if (ingredient["hasAlcohol"]).lower() == "true" :
 
-  				recipe_alcohol = "true"
+                recipe_alcohol = "true"
 
-  			if (ingredient["recipe_cold"]).lower() == "true" :
+            if (ingredient["recipe_cold"]).lower() == "true" :
 
-  				recipe_cold = "true"
+                recipe_cold = "true"
 
-  		# How to know the recipe price ?
+        # How to know the recipe price ?
 
-  		# Création de la recette
-  		new_recipe = {
-  			"recipe_name" : recipe["name"],
-  			"recipe_price" : 1,
-  			"recipe_alcohol" : recipe_alcohol,
-  			"recipe_cold" : recipe_cold
-  		}
+        # Création de la recette
+        new_recipe = {
+        "recipe_name" : recipe["name"],
+        "recipe_price" : 1,
+        "recipe_alcohol" : recipe_alcohol,
+        "recipe_cold" : recipe_cold
+        }
 
-  		create_recipe(new_recipe)
+        create_recipe(new_recipe)
 
-  		for ingredient in recipe["ingredients"]
+        for ingredient in recipe["ingredients"] :
 
-  			db.execute("""
-				INSERT INTO compose
-				VALUES('"""+new_recipe["recipe_name"]+"""','"""+ingredient["name"]+"""');
-			""")
+            db.execute("""
+                INSERT INTO compose
+                VALUES('"""+new_recipe["recipe_name"]+"""','"""+ingredient["name"]+"""');
+            """)
+            
+    elif player_action["kind"] == "ad" :
 
+        latitude = player_action["location"]["latitude"]
+        longitude = player_action["location"]["longitude"]
+        radius = player_action["radius"]
 
-  	elif player_action["kind"] == "ad" :
+        db.execute("""INSERT INTO item VALUES('AD', """+radius+""",'"""+player_name+"""',"""+latitude+""","""+longitude+""");""")
 
-  		db.execute("""
-			INSERT INTO item
-			VALUES('AD', """+player_action["radius"]+""",'"""str(playerName)+"""',"""+player_action["location"]["latitude"]+""","""+player_action["location"]["longitude"]+""");
-		""")
+    # elif player_action["kind"] == "drinks" :
 
-  	elif player_action["kind"] == "drinks" :
+        # db.execute("""
+        #    INSERT INTO SALE
+        #    VALUES("""+get_current_day_number()+""",'"""+player_action["prepare"][""]+"""','"""+str(playerName)+"""',"""+player_action[""]+""",);
+        # """)
 
-  		db.execute("""
-			INSERT INTO SALE
-			VALUES("""+get_current_day_number()+""",);
-		""")
-
-	return json.dumps(""), 200, { "Content-Type": "application/json" }
+    return json.dumps(""), 200, { "Content-Type": "application/json" }

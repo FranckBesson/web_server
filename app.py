@@ -34,6 +34,7 @@ def metrology_get():
 @app.route("/map", methods=['GET'])
 def map_get():
   return map_get_request()
+  
 
 # R3 Commande "simulateur"
 # Par le simulateur Java
@@ -45,7 +46,8 @@ def sales_post():
 # Par client web
 @app.route("/players", methods=['POST'])
 def players_post():
-  return players_post_request(request.get_json())
+  #return players_post_request(request.get_json())
+  return ""
 
 # R5 Obtenir les détails d'une parie
 # Par le client web
@@ -75,7 +77,8 @@ def reset_get():
 # Par le client web
 @app.route("/ingredients", methods=['GET'])
 def ingredients_get():
-  return ingredients_get_request()  
+  # return ingredients_get_request()
+  return ""
 
 if __name__ == "__main__" :
    app.run()
