@@ -5,7 +5,7 @@
 # 
 # db = Db()
 # 
-# def ingredients_get_request():
+def ingredients_get_request():
 # 	i =0
 # 
 # 	# Faire la requêtes pour récupérer les recette dont le nom apparait comme compose_ingredient_recipe_name dans compose
@@ -20,3 +20,4 @@
 # 		ingredientList.append(recipe)
 # 
 # 	return json.dumps(ingredientList), 200, { "Content-Type": "application/json" }
+	return ""
