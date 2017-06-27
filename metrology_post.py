@@ -13,7 +13,7 @@ def metrology_post_request(elements):
   
   for weather in forcast :
 
-    print(str(weather))
+    print("-- log--"+str(weather))
     # Jour courrant
     if weather["dfn"] == "0" :
   
@@ -23,14 +23,18 @@ def metrology_post_request(elements):
       ")
   
       if len(row) == 0 :
-  
+        
+        print("-- log-- insert with dfn at 0")
+
         db.execute("\
           INSERT INTO DAY\
           VALUES("+str(jour_actuel)+",\'"+str(weather["weather"])+"\');\
         ")
   
       else :
-  
+
+        print("-- log-- update with dfn at 0")
+
         db.execute("\
           UPDATE DAY SET DAY_WEATHER = \'"+str(weather["weather"])+"\'\
           WHERE DAY_NUMBER = "+str(jour_actuel)+";\
@@ -46,6 +50,8 @@ def metrology_post_request(elements):
   
       if len(row) == 0 :
   
+        print("-- log-- insert with dfn at 1")
+
         db.execute("\
           INSERT INTO DAY\
           VALUES("+str(jour_actuel+1)+",\'"+str(weather["weather"])+"\');\
@@ -53,6 +59,8 @@ def metrology_post_request(elements):
   
       else :
   
+        print("-- log-- update with dfn at 1")
+
         db.execute("\
           UPDATE DAY SET DAY_WEATHER = \'"+str(weather["weather"])+"\'\
           WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
