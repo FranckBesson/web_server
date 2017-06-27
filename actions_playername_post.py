@@ -47,7 +47,7 @@ def actions_playername_post_request(elements, playerName):
                 VALUES('"""+new_recipe["recipe_name"]+"""','"""+ingredient["name"]+"""');
             """)
             
-    # elif player_action["kind"] == "ad" :
+    #   elif player_action["kind"] == "ad" :
 
         # db.execute("""
         #     INSERT INTO item

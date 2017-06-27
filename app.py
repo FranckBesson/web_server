@@ -27,8 +27,7 @@ def json_response(data="OK", status=200):
 # Par le client web et le simulateur java
 @app.route("/metrology", methods=['GET'])
 def metrology_get():
-  # return metrology_get_request()
-  return ""
+  return metrology_get_request()
 
 # R2 Obtenir les détails d'une partie
 # Par le simulateur Java
