@@ -18,7 +18,7 @@ def actions_playername_post_request(elements, playerName):
 
   		recipe_cold = "false"
 
-  		for ingredient in recipe["ingredients"]
+  		for ingredient in recipe["ingredients"] :
 
   			if (ingredient["hasAlcohol"]).lower() == "true" :
 
@@ -40,7 +40,7 @@ def actions_playername_post_request(elements, playerName):
 
   		create_recipe(new_recipe)
 
-  		for ingredient in recipe["ingredients"]
+  		for ingredient in recipe["ingredients"] :
 
   			db.execute("""
 				INSERT INTO compose
