@@ -73,7 +73,7 @@ def actions_playername_post_request(elements, playerName):
 
                 sale_recipe_name = key
                 sale_produce = player_action["prepare"][key]
-                player_action["price"][sale_recipe_name]:            
+                player_action["price"][sale_recipe_name]
             
             sale_recipe_price =
     
