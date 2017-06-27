@@ -397,4 +397,4 @@ def get_current_day_number():
     FROM time;
     """)
 
-  return (float)(db_day_response[0]["time_hour"])
+  return (int)(((int)(db_day_response[0]["time_hour"]))/24)
