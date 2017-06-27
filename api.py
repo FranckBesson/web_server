@@ -381,3 +381,23 @@ def get_drinks_by_player():
     drinksByPlayer[player["player_name"]] = get_player_drinks_offered_by_player_name(player["player_name"])
 
   return drinksByPlayer;
+
+# ========================== create_recipe ==========================
+# Créer un/une ingrédient/recette
+def create_recipe(recipe):
+
+  db.execute("""
+    INSERT INTO recipe
+    VALUES('"""+recipe["recipe_name"]+"""',"""+recipe["recipe_price"]+""","""+recipe["recipe_alcohol"]+""","""+recipe["recipe_cold"]+""");
+    """)
+
+# ========================== get_day_number ==========================
+# Renvoie le nombre du jour courrant
+def get_current_day_number():
+
+  db_day_response=db.select("""
+    SELECT time_hour
+    FROM time;
+    """)
+
+  return (float)(db_day_response[0]["time_hour"])

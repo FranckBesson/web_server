@@ -57,7 +57,7 @@ def map_playername_get(playerName):
 # Par le client web
 @app.route("/actions/<playerName>", methods=['POST'])
 def actions_playername_post(playerName):
-  return actions_playername_post_request(request.get_json())
+  return actions_playername_post_request(request.get_json(), playerName)
 
 # R7 Commande temps (POST)
 # Par le programme c

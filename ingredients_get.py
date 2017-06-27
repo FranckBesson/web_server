@@ -8,21 +8,13 @@ db = Db()
 def ingredients_get_request():
 	i =0
 
+	# Faire la requêtes pour récupérer les recette dont le nom apparait comme compose_ingredient_recipe_name dans compose
 	db_recipe_response = db.select("""
-        SELECT *
-        FROM RECIPE
+        SELECT compose_ingredient_recipe_name
+        FROM compose
 		WHERE recipe_name<>compose_recipe_name
         ORDER BY recipe_name;
       """)
-
-	#ingredients = db_recipe_response[0]
-
-	#ingredientInfo = {
-	#  "name" : db_recipe_response[0]["recipe_name"],
-	#  "price" : get_recipe_produce_price_by_name(db_recipe_response[0]["recipe_name"]),
-	#  "hasAlcohol" : db_recipe_response[0]["recipe_alcohol"],
-	#  "isCold" : db_recipe_response[0]["recipe_cold"]
-	#}
 
 	for recipe in db_recipe_response :
 		ingredientList.append(recipe)
