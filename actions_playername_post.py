@@ -48,14 +48,14 @@ def actions_playername_post_request(elements, playerName):
     
                 db.execute("""
                     INSERT INTO compose
-                    VALUES('"""+new_recipe["recipe_name"]+"""','"""+ingredient["name"]+"""');
+                    VALUES('"""+str(new_recipe["recipe_name"])+"""','"""+str(ingredient["name"])+"""');
                 """)
                 
         elif player_action["kind"] == "ad" :
     
-            latitude = player_action["location"]["latitude"]
-            longitude = player_action["location"]["longitude"]
-            radius = player_action["radius"]
+            latitude = str(player_action["location"]["latitude"])
+            longitude = str(player_action["location"]["longitude"])
+            radius = str(player_action["radius"])
     
             db.execute("""INSERT INTO item VALUES('AD', """+radius+""",'"""+player_name+"""',"""+latitude+""","""+longitude+""");""")
     
