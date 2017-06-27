@@ -9,6 +9,9 @@ db = Db()
 
 def actions_playername_post_request(elements, playerName):
     player_action = elements["actions"]
+    player_name = str(playerName)
+
+    print(player_name)
 
     if player_action["kind"] == "recipe" :
 
@@ -52,8 +55,6 @@ def actions_playername_post_request(elements, playerName):
         latitude = player_action["location"]["latitude"]
         longitude = player_action["location"]["longitude"]
         radius = player_action["radius"]
-        player_name = str(playerName)
-        print(player_name)
 
         db.execute("""INSERT INTO item VALUES('AD', """+radius+""",'"""player_name+"""',"""+latitude+""","""+longitude+""");""")
 
