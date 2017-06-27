@@ -11,7 +11,7 @@ def metrology_post_request(elements):
 
   jour_actuel = (int)((int)(elements["timestamp"])/24)
   
-  for weather in forcast
+  for weather in forcast :
 
     # Jour courrant
     if weather["dfn"] == "0" :
