@@ -63,17 +63,17 @@ def actions_playername_post_request(elements, playerName):
     
             sale_day_number = str(get_current_day_number()+1)
             sale_recipe_name = ""
-            sale_produce = 0
+            sale_produce = str(0)
             sale_player_name = playerName
-            sale_number = 0
-            sale_recipe_price = 0
+            sale_number = str(0)
+            sale_recipe_price = str(0)
 
             # Technique certainement gitanne et précaire mais d'apoint
             for key in player_action["prepare"]:
 
                 sale_recipe_name = key
-                sale_produce = player_action["prepare"][key]
-                sale_recipe_price = player_action["price"][sale_recipe_name]
+                sale_produce = str(player_action["prepare"][key])
+                sale_recipe_price = str(player_action["price"][sale_recipe_name])
             
             db.execute("""
                 INSERT INTO SALE
