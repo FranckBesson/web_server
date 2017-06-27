@@ -366,6 +366,8 @@ def get_player_info():
 
   return playerInfo
 
+# ========================== get_drinks_by_player ==========================
+# Requête pour lister les recette des joueurs
 def get_drinks_by_player():
   drinksByPlayer = {}
 

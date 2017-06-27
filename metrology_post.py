@@ -5,28 +5,19 @@ import json
 
 def metrology_post_request(elements):
 
-  print("-- log -- elements : " + str(elements))
-  print("-- log -- timestamp : " + str(elements["timestamp"]))
   weather = str(elements["weather"]["weather"])
-  print("-- log -- weather : " + weather)
 
   db = Db()
 
   jour_actuel = (int)((int)(elements["timestamp"])/24)
-  print(str(jour_actuel))
-
   
   # Jour courrant
   if elements["weather"]["dfn"] == "0" :
-
-    print("current day")
 
     row = db.select("\
       SELECT * FROM DAY\
       WHERE DAY_NUMBER = "+str(jour_actuel)+";\
     ")
-
-    print(str(row))
 
     if len(row) == 0 :
 
@@ -51,8 +42,6 @@ def metrology_post_request(elements):
       SELECT * FROM DAY\
       WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
     ")
-
-    print(str(row))
 
     if len(row) == 0 :
 

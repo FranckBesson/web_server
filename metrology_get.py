@@ -12,10 +12,8 @@ def metrology_get_request():
       SELECT * FROM time;\
     ")
   timestamp = (int)(db_time_response[0]["time_hour"])
-  # Log
-  print("-- log -- current timestamp : "+str(timestamp))
+  
   current_day_number = (int)(timestamp/24)
-  print("-- log -- current day number : "+str(current_day_number))
 
   # Ce tableau contiendra tout les objet "weather"
   weathers = []
@@ -28,8 +26,6 @@ def metrology_get_request():
 
   # On test pour voir si le jour actuel est en base de donnée
   if len(db_current_weather_response) == 1 :
-
-    print("-- log -- current day weather : "+str(db_current_weather_response[0]["day_weather"]))
 
     # On crée une map weather_today
     weather_today = {
@@ -49,8 +45,6 @@ def metrology_get_request():
   # On test pour voir si le jour de demain est en base de donnée
   if len(db_tomorrow_weather_response) == 1 :
 
-    print("-- log -- tomorrow day weather : "+str(db_tomorrow_weather_response[0]["day_weather"]))
-
     # On crée une map weather_tomorrow
     weather_tomorrow = {
       "dfn" : 1,
@@ -65,9 +59,6 @@ def metrology_get_request():
     "timestamp" : timestamp,
     "weather" : weathers
   }
-
-  # Log
-  print("-- log -- response : "+str(response))
 
   db.close()
   
