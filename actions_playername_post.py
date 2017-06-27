@@ -73,10 +73,8 @@ def actions_playername_post_request(elements, playerName):
 
                 sale_recipe_name = key
                 sale_produce = player_action["prepare"][key]
-                player_action["price"][sale_recipe_name]
+                sale_recipe_price = player_action["price"][sale_recipe_name]
             
-            sale_recipe_price =
-    
             db.execute("""
                 INSERT INTO SALE
                 VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+player_action[""]+""","""+sale_produce+""","""+sale_recipe_price+""");
