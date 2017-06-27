@@ -58,9 +58,16 @@ def actions_playername_post_request(elements, playerName):
 
     elif player_action["kind"] == "drinks" :
 
-        db.execute("""
-            INSERT INTO SALE
-            VALUES("""+get_current_day_number()+""",'"""+player_action["prepare"][""]+"""','"""+playerName+"""',"""+player_action[""]+""",);
-         """)
+        sale_day_number = str(get_current_day_number()+1)
+        sale_recipe_name = player_action["prepare"][0]
+        #sale_player_name = playerName
+        #sale_number = player_action[""]
+        #sale_produce =
+        #sale_recipe_price =
+
+        #db.execute("""
+        #    INSERT INTO SALE
+        #    VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+player_action[""]+""","""+sale_produce+""","""+sale_recipe_price+""");
+        # """)
 
     return json.dumps(""), 200, { "Content-Type": "application/json" }
