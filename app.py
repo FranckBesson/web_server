@@ -33,7 +33,8 @@ def metrology_get():
 # Par le simulateur Java
 @app.route("/map", methods=['GET'])
 def map_get():
-  return map_get_request()
+  # return map_get_request()
+  return ""
 
 # R3 Commande "simulateur"
 # Par le simulateur Java
@@ -75,7 +76,8 @@ def reset_get():
 # Par le client web
 @app.route("/ingredients", methods=['GET'])
 def ingredients_get():
-  return ingredients_get_request()  
+  # return ingredients_get_request()
+  return ""
 
 if __name__ == "__main__" :
    app.run()
