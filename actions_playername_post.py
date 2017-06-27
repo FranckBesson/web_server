@@ -53,6 +53,7 @@ def actions_playername_post_request(elements, playerName):
         longitude = player_action["location"]["longitude"]
         radius = player_action["radius"]
         player_name = str(playerName)
+        print(player_name)
 
         db.execute("""INSERT INTO item VALUES('AD', """+radius+""",'"""player_name+"""',"""+latitude+""","""+longitude+""");""")
 
