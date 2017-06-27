@@ -5,7 +5,7 @@ import json
 
 def metrology_post_request(elements):
 
-  forcast = str(elements["weather"])
+  forcast = elements["weather"]
 
   db = Db()
 
