@@ -60,7 +60,7 @@ def actions_playername_post_request(elements, playerName):
 
         db.execute("""
             INSERT INTO SALE
-            VALUES("""+get_current_day_number()+""",'"""+player_action["prepare"][""]+"""','"""+str(playerName)+"""',"""+player_action[""]+""",);
+            VALUES("""+get_current_day_number()+""",'"""+player_action["prepare"][""]+"""','"""+playerName+"""',"""+player_action[""]+""",);
          """)
 
     return json.dumps(""), 200, { "Content-Type": "application/json" }
