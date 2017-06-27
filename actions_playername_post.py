@@ -77,7 +77,7 @@ def actions_playername_post_request(elements, playerName):
             
             db.execute("""
                 INSERT INTO SALE
-                VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+player_action[""]+""","""+sale_produce+""","""+sale_recipe_price+""");
+                VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+sale_number+""","""+sale_produce+""","""+sale_recipe_price+""");
             """)
     
     return json.dumps(""), 200, { "Content-Type": "application/json" }
