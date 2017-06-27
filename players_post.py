@@ -10,22 +10,13 @@ def players_post_request(elements):
 
   if player_exist(name) == False :
 
-    i = 0
-
-    while i < 1500 :
-
-        new_name = name + str(i) + "e"
-        create_player_by_name(new_name)
-
-        i = i +1
+    create_player_by_name(name)
 
   response = {
     "name" : name,
     "location" : get_player_location_by_player_name(name),
     "info" : get_player_info_by_player_name(name)
   }
-
-  print("non")
 
   return json.dumps(response), 200, { "Content-Type": "application/json" }
 
