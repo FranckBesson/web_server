@@ -296,11 +296,8 @@ def get_ranking():
   # Création d'un tableau pour placer les joueur par ordre de richesse
   ranking = []
 
-  print("-- log -- " + str(db_player_rank_response))
-
   # Itération sur la réponse pour alimenter le tableau
   for player in db_player_rank_response :
-    print("-- log -- player :" + str(player))
     ranking.append(player["player_name"])
 
   return ranking

@@ -37,9 +37,7 @@ def metrology_post_request(elements):
   
     # Jour suivant
     elif weather["dfn"] == "1" :
-  
-      print("day after")
-  
+    
       row = db.select("\
         SELECT * FROM DAY\
         WHERE DAY_NUMBER = "+str(jour_actuel+1)+";\
