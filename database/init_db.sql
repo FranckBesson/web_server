@@ -133,6 +133,7 @@ CREATE TABLE SALE (
     SALE_PLAYER_NAME  VARCHAR(255)  NOT NULL,
     SALE_NUMBER       INT           NOT NULL,
     SALE_PRODUCE      INT           NOT NULL,
+    SALE_RECIPE_PRICE      INT           NOT NULL,
 
     CONSTRAINT PK_SALE PRIMARY KEY(SALE_DAY_NUMBER, SALE_RECIPE_NAME, SALE_PLAYER_NAME),
     CONSTRAINT CK_SALE_NUMBER CHECK (SALE_NUMBER <= SALE_PRODUCE),
@@ -237,11 +238,11 @@ INSERT INTO DAY VALUES(1,'SUNNY');
 INSERT INTO DAY VALUES(2,'CLOUDY');
 
 -- Création des sales d'un joueur
-INSERT INTO SALE VALUES(1,'lemonade','Franck',5,5);
-INSERT INTO SALE VALUES(1,'ricard (with water)','Franck',2,3);
+INSERT INTO SALE VALUES(1,'lemonade','Franck',5,5,1);
+INSERT INTO SALE VALUES(1,'ricard (with water)','Franck',2,3,2);
 
-INSERT INTO SALE VALUES(1,'lemonade','Martin',2,5);
-INSERT INTO SALE VALUES(1,'ricard (with water)','Martin',6,10);
+INSERT INTO SALE VALUES(1,'lemonade','Martin',2,5,3);
+INSERT INTO SALE VALUES(1,'ricard (with water)','Martin',6,10,5);
 
 -- Création de la map
 INSERT INTO MAP(MAP_CENTER_X, MAP_CENTER_Y, MAP_SPAN_X, MAP_SPAN_Y) VALUES(5,5,10,10);
