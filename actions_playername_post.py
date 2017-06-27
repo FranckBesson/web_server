@@ -8,6 +8,7 @@ db = Db()
 
 
 def actions_playername_post_request(elements, playerName):
+    print(str(elements))
     player_action = elements["actions"]
     player_name = str(playerName)
 
