@@ -47,7 +47,8 @@ def sales_post():
 # Par client web
 @app.route("/players", methods=['POST'])
 def players_post():
-  return players_post_request(request.get_json())
+  #return players_post_request(request.get_json())
+  return ""
 
 # R5 Obtenir les détails d'une parie
 # Par le client web
