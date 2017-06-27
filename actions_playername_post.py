@@ -11,8 +11,6 @@ def actions_playername_post_request(elements, playerName):
     player_action = elements["actions"]
     player_name = str(playerName)
 
-    print(player_name)
-
     if player_action["kind"] == "recipe" :
 
         recipe = player_action["recipe"]
@@ -56,7 +54,7 @@ def actions_playername_post_request(elements, playerName):
         longitude = player_action["location"]["longitude"]
         radius = player_action["radius"]
 
-        db.execute("""INSERT INTO item VALUES('AD', """+radius+""",'"""player_name+"""',"""+latitude+""","""+longitude+""");""")
+        db.execute("""INSERT INTO item VALUES('AD', """+radius+""",'"""+player_name+"""',"""+latitude+""","""+longitude+""");""")
 
     # elif player_action["kind"] == "drinks" :
 
