@@ -110,7 +110,7 @@ def get_player_drinks_offered_by_player_name(player_name):
     db_recipe_response = db.select("""
         SELECT *
         FROM recipe
-        WHERE recipe_name = '"""+recipe["recipe_possession_recipe_name"]+"""';
+        WHERE recipe_name = '"""+recipe["sale_recipe_name"]+"""';
       """)
 
     if len(db_recipe_response) == 1 :
