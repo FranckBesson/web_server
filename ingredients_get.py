@@ -5,7 +5,7 @@ import json
 
 db = Db()
 
-#def ingredients_get_request():
+def ingredients_get_request():
 #	# récupération des valeurs
 #	compose = get_compose()
 #	receipe = get_receipe()
