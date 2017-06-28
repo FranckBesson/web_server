@@ -129,7 +129,8 @@ def get_player_drinks_offered_by_player_name(player_name):
 
 # ========================== get_player_info_by_player_name ==========================
 # Requête pour lister les items des joueur
-def get_player_info_by_player_name(player_name):
+# PB de conception là ...
+def get_player_info_R2_by_player_name(player_name):
 
   db_player_response = db.select("""
       SELECT *
@@ -371,7 +372,7 @@ def get_item_by_player():
 # ========================== get_player_info_R5 ==========================
 # Requête pour lister les info des joueurs pour le client web
 # Pb de conception des requêtes là ...
-def get_player_info_R5():
+def get_player_info_R2():
 
   playerInfo = {}
 
@@ -382,7 +383,7 @@ def get_player_info_R5():
 
   for player in db_player_response :
 
-    playerInfo[player["player_name"]] = get_player_info_R5_by_player_name(player["player_name"])
+    playerInfo[player["player_name"]] = get_player_info_R2_by_player_name(player["player_name"])
 
   return playerInfo
 
@@ -400,7 +401,7 @@ def get_player_info_R5():
 
   for player in db_player_response :
 
-    playerInfo[player["player_name"]] = get_player_info_by_player_name(player["player_name"])
+    playerInfo[player["player_name"]] = get_player_info_R5_by_player_name(player["player_name"])
 
   return playerInfo
 
