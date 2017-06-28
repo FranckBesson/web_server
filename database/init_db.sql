@@ -237,8 +237,8 @@ INSERT INTO DAY VALUES(1,'SUNNY');
 INSERT INTO DAY VALUES(2,'CLOUDY');
 
 -- Création des sales d'un joueur
-INSERT INTO SALE VALUES(1,'lemonade','Franck',5,5,1);
-INSERT INTO SALE VALUES(1,'ricard (with water)','Franck',2,3,2);
+-- INSERT INTO SALE VALUES(1,'lemonade','Franck',5,5,1);
+-- INSERT INTO SALE VALUES(1,'ricard (with water)','Franck',2,3,2);
 
 --INSERT INTO SALE VALUES(1,'lemonade','Martin',2,5,3);
 --INSERT INTO SALE VALUES(1,'ricard (with water)','Martin',6,10,5);

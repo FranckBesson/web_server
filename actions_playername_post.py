@@ -59,7 +59,7 @@ def player_action_drinks(player_action, player_name):
     sale_day_number = str(get_current_day_number()+1)
     sale_recipe_name = ""
     sale_produce = str(0)
-    sale_player_name = playerName
+    sale_player_name = player_name
     sale_number = str(0)
     sale_recipe_price = str(0)
 
