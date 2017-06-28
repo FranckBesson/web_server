@@ -9,7 +9,7 @@ def map_get_request():
   region = get_region()
   ranking = get_ranking() 
   itemsByPlayer = get_item_by_player()
-  playerinfo = get_player_R2_info()
+  playerinfo = get_player_info_R2()
   drinksByPlayer = get_drinks_by_player()
 
   # Création de la map _map
@@ -27,3 +27,4 @@ def map_get_request():
   }
 
   return json.dumps(response), 200, { "Content-Type": "application/json" }
+  
