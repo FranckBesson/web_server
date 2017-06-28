@@ -7,9 +7,9 @@ def sales_post_request(elements):
 
   print(str(elements))
 
-  sale_player_name = elements["player"]
-  item = elements["item"]
-  quantity = elements["quantity"]
+  sale_player_name = elements["sales"]["player"]
+  item = elements["sales"]["item"]
+  quantity = elements["sales"]["quantity"]
 
   db.execute("""
     UPDATE SALE
