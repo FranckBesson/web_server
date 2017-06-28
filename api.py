@@ -574,3 +574,23 @@ def recipe_quantity_produce_by_day_recipe_and_player(current_day,item,sale_playe
   else :
 
     return None
+
+# ========================== calculate_all_sales ==========================
+# calcul tout les coûts et déduit les montant sur le compte des joueurs
+def calculate_all_sales() :
+
+  current_day = get_current_day_number()
+
+  db_sale_response = db.select("""
+      SELECT *
+      FROM sale
+      WHERE sale_day_number = """+str(current_day)+""";
+    """)
+
+  for sale in db_sale_response :
+
+    # Calcul le coût de production
+    recipe_produce_price = float(get_recipe_produce_price_by_name(str(sale["sale_recipe_name"])))
+    recipe_quantity_produce = float(recipe_quantity_produce_by_day_recipe_and_player(current_day,str(sale["sale_recipe_name"]),str(sale["sale_player_name"])))
+    production_cost = recipe_quantity_produce * recipe_produce_price
+    deduct_player_budget_by_player_name(str(sale["sale_recipe_name"]),production_cost)
