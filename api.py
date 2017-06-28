@@ -554,3 +554,22 @@ def deduct_player_budget_by_player_name(player_name,amount):
       SET player_budget = """+str(new_budget)+"""
       WHERE player_name = '"""+str(player_name)+"""';
     """)
+
+# ========================== recipe_quantity_produce_by_day_recipe_and_player ==========================
+# renvoie le nombre de production par recette, jour et nom de joueur
+def recipe_quantity_produce_by_day_recipe_and_player(current_day,item,sale_player_name) :
+
+  db_sale_response = db.select("""
+      SELECT sale_produce
+      WHERE sale_day_number = """+str(current_day)+"""
+      AND sale_recipe_name = '"""+item+"""'
+      AND sale_player_name = '"""+sale_player_name+"""';
+    """)
+
+  if len(db_sale_response) == 1 :
+
+    return db_sale_response[0]["sale_produce"]
+
+  else :
+
+    return None

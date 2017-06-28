@@ -137,8 +137,6 @@ def actions_playername_post_request(elements, playerName):
         
                 player_action_drinks(player_action,player_name)
 
-        deduct_player_budget_by_player_name(player_name,cost)
-
         response = {
             "sufficientFunds" : True,
             "totalCost" : cost
