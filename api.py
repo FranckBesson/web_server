@@ -537,7 +537,7 @@ def player_have_enough_budget_by_player_name(player_name,cost):
 # ========================== deduct_player_budget_by_player_name ==========================
 # Déduit le budget du joueur en fonction du montant
 def deduct_player_budget_by_player_name(player_name,amount):
-  
+
   print("-- log deduct_player_budget_by_player_name -- : "+str(player_name))
 
   db_player_response = db.select("""
@@ -603,4 +603,4 @@ def calculate_all_sales() :
     recipe_produce_price = float(get_recipe_produce_price_by_name(str(sale["sale_recipe_name"])))
     recipe_quantity_produce = float(recipe_quantity_produce_by_day_recipe_and_player(current_day,str(sale["sale_recipe_name"]),str(sale["sale_player_name"])))
     production_cost = recipe_quantity_produce * recipe_produce_price
-    deduct_player_budget_by_player_name(str(sale["sale_recipe_name"]),production_cost)
+    deduct_player_budget_by_player_name(str(sale["sale_player_name"]),production_cost)
