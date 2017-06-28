@@ -20,6 +20,22 @@ def sales_post_request(elements):
 
   	current_day = get_current_day_number()
 
+  	db_sale_select = db.select("""
+        SELECT *
+        FROM SALE
+        WHERE sale_day_number = """+str(current_day)+"""
+        AND sale_recipe_name = '"""+item+"""'
+        AND sale_player_name = '"""+sale_player_name+"""';
+        """)
+
+    if len(db_sale_select) == 0 :
+
+    	productions = float(db_sale_select[0]["sale_produce"])
+
+    	if quantity > productions :
+
+    		quantity = productions
+
   	db.execute("""
     	UPDATE SALE
     	SET sale_number = """+quantity+"""
