@@ -14,7 +14,7 @@ def map_playername_get_request(playerName):
 	response = {
 		"availableIngredients" : get_available_ingredients(playerName),
 		"map" : _map,
-		"playerInfo" : get_player_info_by_player_name(playerName)
+		"playerInfo" : get_player_info_R5_by_player_name(playerName)
 	}
 
 	return json.dumps(response), 200, { "Content-Type": "application/json" }

@@ -147,6 +147,27 @@ def get_player_info_by_player_name(player_name):
 
   return playerInfo
 
+# ========================== get_player_info_R5_by_player_name ==========================
+# Requête pour lister les items des joueur
+# PB de conception là ...
+def get_player_info_R5_by_player_name(player_name):
+
+  db_player_response = db.select("""
+      SELECT *
+      FROM player
+      WHERE player_name = '"""+player_name+"""';
+    """)
+  player = db_player_response[0]
+
+  playerInfo = {
+    "cash" : player["player_budget"],
+    "sales" : get_player_sale_by_player_name(player_name),
+    "profit" : get_player_profit_by_player_name(player_name),
+    "drinksOffered" : get_player_drinks_by_player_name(player_name)
+  }
+
+  return playerInfo
+
 # ========================== get_items_by_player_name ==========================
 # Requête pour lister les items des joueur
 def get_items_by_player_name(player_name):
@@ -347,9 +368,28 @@ def get_item_by_player():
 
   return itemsByPlayer
 
+# ========================== get_player_info_R5 ==========================
+# Requête pour lister les info des joueurs pour le client web
+# Pb de conception des requêtes là ...
+def get_player_info_R5():
+
+  playerInfo = {}
+
+  db_player_response = db.select("""
+    SELECT *
+    FROM player;
+  """)
+
+  for player in db_player_response :
+
+    playerInfo[player["player_name"]] = get_player_info_R5_by_player_name(player["player_name"])
+
+  return playerInfo
+
 # ========================== get_player_info ==========================
 # Requête pour lister les info des joueurs
-def get_player_info():
+# Pb de conception des requêtes là ...
+def get_player_info_R5():
 
   playerInfo = {}
 
