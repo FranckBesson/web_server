@@ -405,7 +405,7 @@ def day_exist_by_day_number(day_number):
 
   row = db.select("\
     SELECT * FROM DAY\
-    WHERE DAY_NUMBER = "+str(jour_actuel)+";\
+    WHERE DAY_NUMBER = "+str(day_number)+";\
   ")
 
   if len(row) == 0 :
