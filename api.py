@@ -579,7 +579,7 @@ def recipe_quantity_produce_by_day_recipe_and_player(current_day,item,sale_playe
 # calcul tout les coûts et déduit les montant sur le compte des joueurs
 def calculate_all_sales() :
 
-  current_day = get_current_day_number()
+  current_day = get_current_day_number()+1
 
   db_sale_response = db.select("""
       SELECT *
