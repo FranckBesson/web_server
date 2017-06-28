@@ -13,7 +13,7 @@ from map_playername_get import map_playername_get_request
 from actions_playername_post import actions_playername_post_request
 from metrology_post import metrology_post_request
 from reset_get import reset_get_request
-from ingredients_get import ingredients_get_request
+#from ingredients_get import ingredients_get_request
 
 app = Flask(__name__)
 app.debug = True
@@ -73,10 +73,9 @@ def reset_get():
 
 # R9 Obtenir la liste des ingrédients
 # Par le client web
-@app.route("/ingredients", methods=['GET'])
-def ingredients_get():
-  #return ingredients_get_request()
-  return ""
+#@app.route("/ingredients", methods=['GET'])
+#def ingredients_get():
+#  return ingredients_get_request()
 
 if __name__ == "__main__" :
    app.run()
