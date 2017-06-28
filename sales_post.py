@@ -8,6 +8,8 @@ db = Db()
 
 def sales_post_request(elements):
 
+	print(elements)
+
   sales = elements["sales"]
 
   for sale in sales :
