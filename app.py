@@ -47,11 +47,11 @@ def sales_post():
 def players_post():
   return players_post_request(request.get_json())
 
-# R5 Obtenir les détails d'une parie
+# R5 Obtenir les détails d'une partie
 # Par le client web
 @app.route("/map/<playerName>", methods=['GET'])
 def map_playername_get(playerName):
-  return map_playername_get_request()
+  return map_playername_get_request(playerName)
 
 # R6 Instruction du joueur pour le jour suivant
 # Par le client web

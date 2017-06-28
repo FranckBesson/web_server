@@ -1,22 +1,8 @@
 # coding=utf-8
 
+from api import *
 from db import Db
 import json
-
-def day_exist_by_day_number(day_number):
-
-  row = db.select("\
-    SELECT * FROM DAY\
-    WHERE DAY_NUMBER = "+str(jour_actuel)+";\
-  ")
-
-  if len(row) == 0 :
-
-    return False
-
-  else :
-
-    return True
 
 def metrology_post_request(elements):
 

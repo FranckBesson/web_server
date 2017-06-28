@@ -398,3 +398,20 @@ def get_current_day_number():
     """)
 
   return (int)(((int)(db_day_response[0]["time_hour"]))/24)
+
+# ========================== day_exist_by_day_number ==========================
+# Renvoie true si le jour existe, false sinon
+def day_exist_by_day_number(day_number):
+
+  row = db.select("\
+    SELECT * FROM DAY\
+    WHERE DAY_NUMBER = "+str(jour_actuel)+";\
+  ")
+
+  if len(row) == 0 :
+
+    return False
+
+  else :
+
+    return True
