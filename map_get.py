@@ -9,7 +9,7 @@ def map_get_request():
   region = get_region()
   ranking = get_ranking() 
   itemsByPlayer = get_item_by_player()
-  playerinfo = get_player_info()
+  playerinfo = get_player_R2_info()
   drinksByPlayer = get_drinks_by_player()
 
   # Création de la map _map
