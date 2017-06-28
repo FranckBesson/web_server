@@ -25,8 +25,8 @@ def sales_post_request(elements):
 		SELECT *
 		FROM SALE
 		WHERE sale_day_number = """+str(current_day)+"""
-		AND sale_recipe_name = '"""+item+"""'
-		AND sale_player_name = '"""+sale_player_name+"""';
+		AND sale_recipe_name = '"""+str(item)+"""'
+		AND sale_player_name = '"""+str(sale_player_name)+"""';
 	""")
 
 	if len(db_sale_select) == 1 :
@@ -41,8 +41,8 @@ def sales_post_request(elements):
 		UPDATE SALE
 		SET sale_number = """+quantity+"""
 		WHERE sale_day_number = """+str(current_day)+"""
-		AND sale_recipe_name = '"""+item+"""'
-		AND sale_player_name = '"""+sale_player_name+"""';
+		AND sale_recipe_name = '"""+str(item)+"""'
+		AND sale_player_name = '"""+str(sale_player_name)+"""';
 	""")
 
   calculate_all_sales()
