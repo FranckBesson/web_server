@@ -6,28 +6,23 @@ import json
 
 db = Db()
 
+def player_action_recipe(player_action, player_name):
 
-def actions_playername_post_request(elements, playerName):
-    player_action = elements["actions"]
-    player_name = str(playerName)
+    recipe = player_action["recipe"]
+    
+    recipe_alcohol = "false"
+    
+    recipe_cold = "false"
+    
+    for ingredient in recipe["ingredients"] :
 
-    if player_action["kind"] == "recipe" :
+        if (ingredient["hasAlcohol"]).lower() == "true" :
 
-        recipe = player_action["recipe"]
+            recipe_alcohol = "true"
 
-        recipe_alcohol = "false"
+        if (ingredient["recipe_cold"]).lower() == "true" :
 
-        recipe_cold = "false"
-
-        for ingredient in recipe["ingredients"] :
-
-            if (ingredient["hasAlcohol"]).lower() == "true" :
-
-                recipe_alcohol = "true"
-
-            if (ingredient["recipe_cold"]).lower() == "true" :
-
-                recipe_cold = "true"
+            recipe_cold = "true"
 
         # How to know the recipe price ?
 
@@ -45,22 +40,72 @@ def actions_playername_post_request(elements, playerName):
 
             db.execute("""
                 INSERT INTO compose
-                VALUES('"""+new_recipe["recipe_name"]+"""','"""+ingredient["name"]+"""');
-            """)
+                VALUES('"""+str(new_recipe["recipe_name"])+"""','"""+str(ingredient["name"])+"""');
+                """)
+
+
+def actions_playername_post_request(elements, playerName):
+
+    player_actions = elements["actions"]
+    player_name = str(playerName)
+
+    for player_action in player_actions :
+    
+        if player_action["kind"] == "recipe" :
+    
+            player_action_recipe(player_action,player_name)
+                
+        elif player_action["kind"] == "ad" :
+    
+            latitude = str(player_action["location"]["latitude"])
+            longitude = str(player_action["location"]["longitude"])
+            radius = str(player_action["radius"])
+    
+            db.execute("""
+                INSERT INTO item(item_kind,item_influence,item_owner,item_x_coordinate,item_y_coordinate)
+                VALUES('AD', """+radius+""",'"""+player_name+"""',"""+latitude+""","""+longitude+""");
+                """)
+    
+        elif player_action["kind"] == "drinks" :
+    
+            sale_day_number = str(get_current_day_number()+1)
+            sale_recipe_name = ""
+            sale_produce = str(0)
+            sale_player_name = playerName
+            sale_number = str(0)
+            sale_recipe_price = str(0)
+
+            # Technique certainement gitanne et précaire mais d'apoint
+            for key in player_action["prepare"]:
+
+                sale_recipe_name = key
+                sale_produce = str(player_action["prepare"][key])
+                sale_recipe_price = str(player_action["price"][sale_recipe_name])
             
-    elif player_action["kind"] == "ad" :
+            db_sale_select = db.select("""
+                SELECT *
+                FROM SALE
+                WHERE sale_day_number = """+sale_day_number+"""
+                AND sale_recipe_name = '"""+sale_recipe_name+"""'
+                AND sale_player_name = '"""+sale_player_name+"""';
+                """)
 
-        latitude = player_action["location"]["latitude"]
-        longitude = player_action["location"]["longitude"]
-        radius = player_action["radius"]
+            if len(db_sale_select) == 0 :
 
-        db.execute("""INSERT INTO item VALUES('AD', """+radius+""",'"""+player_name+"""',"""+latitude+""","""+longitude+""");""")
+                db.execute("""
+                    INSERT INTO SALE
+                    VALUES("""+sale_day_number+""",'"""+sale_recipe_name+"""','"""+sale_player_name+"""',"""+sale_number+""","""+sale_produce+""","""+sale_recipe_price+""");
+                """)
 
-    # elif player_action["kind"] == "drinks" :
+            else :
 
-        # db.execute("""
-        #    INSERT INTO SALE
-        #    VALUES("""+get_current_day_number()+""",'"""+player_action["prepare"][""]+"""','"""+str(playerName)+"""',"""+player_action[""]+""",);
-        # """)
+                db.execute("""
+                    UPDATE SALE
+                    SET sale_number = """+sale_number+""", sale_produce = """+sale_produce+""", sale_recipe_price = """+sale_recipe_price+"""
+                    WHERE sale_day_number = """+sale_day_number+"""
+                    AND sale_recipe_name = '"""+sale_recipe_name+"""'
+                    AND sale_player_name = '"""+sale_player_name+"""';
+                """)
+
 
     return json.dumps(""), 200, { "Content-Type": "application/json" }

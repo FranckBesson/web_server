@@ -13,7 +13,7 @@ from map_playername_get import map_playername_get_request
 from actions_playername_post import actions_playername_post_request
 from metrology_post import metrology_post_request
 from reset_get import reset_get_request
-from ingredients_get import ingredients_get_request
+#from ingredients_get import ingredients_get_request
 
 app = Flask(__name__)
 app.debug = True
@@ -35,7 +35,6 @@ def metrology_get():
 def map_get():
   return map_get_request()
   
-
 # R3 Commande "simulateur"
 # Par le simulateur Java
 @app.route("/sales", methods=['POST'])
@@ -46,14 +45,13 @@ def sales_post():
 # Par client web
 @app.route("/players", methods=['POST'])
 def players_post():
-  #return players_post_request(request.get_json())
-  return ""
+  return players_post_request(request.get_json())
 
-# R5 Obtenir les détails d'une parie
+# R5 Obtenir les détails d'une partie
 # Par le client web
 @app.route("/map/<playerName>", methods=['GET'])
 def map_playername_get(playerName):
-  return map_playername_get_request()
+  return map_playername_get_request(playerName)
 
 # R6 Instruction du joueur pour le jour suivant
 # Par le client web
@@ -75,10 +73,9 @@ def reset_get():
 
 # R9 Obtenir la liste des ingrédients
 # Par le client web
-@app.route("/ingredients", methods=['GET'])
-def ingredients_get():
-  # return ingredients_get_request()
-  return ""
+#@app.route("/ingredients", methods=['GET'])
+#def ingredients_get():
+#  return ingredients_get_request()
 
 if __name__ == "__main__" :
    app.run()
