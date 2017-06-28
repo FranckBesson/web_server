@@ -587,6 +587,8 @@ def calculate_all_sales() :
       WHERE sale_day_number = """+str(current_day)+""";
     """)
 
+  print("-- log -- : "+str(db_sale_response))
+
   for sale in db_sale_response :
 
     # Calcul le coût de production
