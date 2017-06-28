@@ -14,36 +14,36 @@ def sales_post_request(elements):
 
   for sale in sales :
 
-  	sale_player_name = str(sale["player"])
-  	item = str(sale["item"])
-  	quantity = str(sale["quantity"])
+	sale_player_name = str(sale["player"])
+	item = str(sale["item"])
+	quantity = str(sale["quantity"])
 
-  	current_day = get_current_day_number()
+	current_day = get_current_day_number()
 
-  	# Je caste la valeur de quantité pour pas le joueur vende plus de boissons qu'il n'en produise
-  	db_sale_select = db.select("""
-        SELECT *
-        FROM SALE
-        WHERE sale_day_number = """+str(current_day)+"""
-        AND sale_recipe_name = '"""+item+"""'
-        AND sale_player_name = '"""+sale_player_name+"""';
-    """)
+	# Je caste la valeur de quantité pour pas le joueur vende plus de boissons qu'il n'en produise
+	db_sale_select = db.select("""
+		SELECT *
+		FROM SALE
+		WHERE sale_day_number = """+str(current_day)+"""
+		AND sale_recipe_name = '"""+item+"""'
+		AND sale_player_name = '"""+sale_player_name+"""';
+	""")
 
-    if len(db_sale_select) == 1 :
+	if len(db_sale_select) == 1 :
 
-      productions = float(db_sale_select[0]["sale_produce"])
+		productions = float(db_sale_select[0]["sale_produce"])
 
-      if quantity > productions :
+		if quantity > productions :
 
-        quantity = productions
+			quantity = productions
 
-  	db.execute("""
-    	UPDATE SALE
-    	SET sale_number = """+quantity+"""
-    	WHERE sale_day_number = """+str(current_day)+"""
-    	AND sale_recipe_name = '"""+item+"""'
-    	AND sale_player_name = '"""+sale_player_name+"""';
-  	""")
+	db.execute("""
+		UPDATE SALE
+		SET sale_number = """+quantity+"""
+		WHERE sale_day_number = """+str(current_day)+"""
+		AND sale_recipe_name = '"""+item+"""'
+		AND sale_player_name = '"""+sale_player_name+"""';
+	""")
 
   calculate_all_sales()
 
