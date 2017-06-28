@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from db import Db
+from api import *
 import json
 
 def map_playername_get_request(playerName):
