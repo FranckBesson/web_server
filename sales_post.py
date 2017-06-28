@@ -20,6 +20,7 @@ def sales_post_request(elements):
 
   	current_day = get_current_day_number()
 
+  	# Je caste la valeur de quantité pour pas le joueur vende plus de boissons qu'il n'en produise
   	db_sale_select = db.select("""
         SELECT *
         FROM SALE
@@ -28,13 +29,13 @@ def sales_post_request(elements):
         AND sale_player_name = '"""+sale_player_name+"""';
         """)
 
-    if len(db_sale_select) == 0 :
+    if len(db_sale_select) == 1 :
 
-    	productions = float(db_sale_select[0]["sale_produce"])
+      productions = float(db_sale_select[0]["sale_produce"])
 
-    	if quantity > productions :
+      if quantity > productions :
 
-    		quantity = productions
+        quantity = productions
 
   	db.execute("""
     	UPDATE SALE
