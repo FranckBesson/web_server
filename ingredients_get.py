@@ -6,7 +6,7 @@ import json
 db = Db()
 
 def ingredients_get_request():
-	
+
 	# récupération des valeurs
 	ingredients = get_ingredients()
 
@@ -15,11 +15,11 @@ def ingredients_get_request():
 def get_ingredients ():
 	db_compose = db.select("""
 		SELECT DISTINCT compose_ingredients_recipe_name
-		FROM compose """)
+		FROM compose;""")
 
 	db_recipe = db.select("""
-		SELECT*
-		FROM RECIPE """)
+		SELECT *
+		FROM RECIPE;""")
 
 	tab = []
 
