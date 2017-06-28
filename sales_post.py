@@ -1,5 +1,6 @@
 # coding=utf-8
 
+from api import *
 from db import Db
 import json
 
