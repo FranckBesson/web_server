@@ -20,8 +20,6 @@ def metrology_post_request(elements):
     if weather["dfn"] == "0" :
   
       if day_exist_by_day_number(jour_actuel) :
-
-        print("-- log-- update with dfn at 0")
         
         db.execute("""
           UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"]).upper()+"""'
@@ -30,8 +28,6 @@ def metrology_post_request(elements):
   
       else :
         
-        print("-- log-- insert with dfn at 0 : ")
-
         db.execute("""
           INSERT INTO DAY
           VALUES("""+str(jour_actuel)+""",'"""+str(weather["weather"]).upper()+"""');
@@ -42,8 +38,6 @@ def metrology_post_request(elements):
   
       if day_exist_by_day_number(jour_actuel+1) :
   
-        print("-- log-- update with dfn at 1")
-
         db.execute("""
           UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"]).upper()+"""'
           WHERE DAY_NUMBER = """+str(jour_actuel+1)+""";
@@ -51,8 +45,6 @@ def metrology_post_request(elements):
   
       else :
     
-        print("-- log-- insert with dfn at 1")
-
         db.execute("""
           INSERT INTO DAY
           VALUES("""+str(jour_actuel+1)+""",'"""+str(weather["weather"]).upper()+"""');

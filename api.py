@@ -127,7 +127,7 @@ def get_player_drinks_offered_by_player_name(player_name):
 
   return drinksOffered
 
-# ========================== get_player_info_by_player_name ==========================
+# ========================== get_player_info_R2_by_player_name ==========================
 # Requête pour lister les items des joueur
 # PB de conception là ...
 def get_player_info_R2_by_player_name(player_name):
@@ -518,3 +518,39 @@ def get_ingredients():
          response.append(recipe["recipe_name"])
 
   return response
+
+# ========================== player_have_enough_budget_by_player_name ==========================
+# Renvoie true si le joueur a assez d'argent, false sinon
+def player_have_enough_budget_by_player_name(player_name,cost):
+  db_player_response = db.select("""
+    SELECT player_budget
+    FROM player
+    WHERE player_name = '"""+str(player_name)+"""';
+  """)
+
+  if len(db_player_response) == 1 :
+
+    budget = float(db_player_response[0]["player_budget"])
+
+    return budget >= float(cost)
+
+# ========================== deduct_player_budget_by_player_name ==========================
+# Déduit le budget du joueur en fonction du montant
+def deduct_player_budget_by_player_name(player_name,amount):
+  db_player_response = db.select("""
+    SELECT player_budget
+    FROM player
+    WHERE player_name = '"""+str(player_name)+"""';
+  """)
+
+  if len(db_player_response) == 1 :
+
+    budget = float(db_player_response[0]["player_budget"])
+
+    new_budget = budget - (float)amount
+
+    db.execute("""
+      UPDATE player
+      SET player_budget = """+str(new_budget)+"""
+      WHERE player_name = '"""+str(player_name)+"""';
+    """)
