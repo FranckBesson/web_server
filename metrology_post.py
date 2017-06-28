@@ -15,7 +15,6 @@ def metrology_post_request(elements):
 
   for weather in forcast :
 
-    print("-- log--"+str(weather))
     # Jour courrant
     if weather["dfn"] == "0" :
   
