@@ -417,6 +417,28 @@ def day_exist_by_day_number(day_number):
     return True
 
 # ========================== get_available_ingredients ==========================
-# Renvoie la liste des ingredients
+# Renvoie la liste des ingredients disponnible
+# Wrong !
 def get_available_ingredients(playerName):
-  return ""
+  return get_ingredients()
+
+# ========================== get_ingredients ==========================
+# Renvoie la liste des ingredients
+def get_ingredients():
+
+  db_compose = db.select("""
+    SELECT DISTINCT compose_ingredient_recipe_name
+    FROM compose;""")
+
+  db_recipe = db.select("""
+    SELECT *
+    FROM RECIPE;""")
+
+  response = []
+
+  for recipe in db_recipe :
+    for ingredient in db_compose :
+      if recipe["recipe_name"] == ingredient["compose_ingredient_recipe_name"] :
+         response.append(recipe["recipe_name"])
+
+  return response
