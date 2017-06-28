@@ -561,6 +561,7 @@ def recipe_quantity_produce_by_day_recipe_and_player(current_day,item,sale_playe
 
   db_sale_response = db.select("""
       SELECT sale_produce
+      FROM sale
       WHERE sale_day_number = """+str(current_day)+"""
       AND sale_recipe_name = '"""+item+"""'
       AND sale_player_name = '"""+sale_player_name+"""';
