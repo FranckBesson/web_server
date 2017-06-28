@@ -146,7 +146,7 @@ def actions_playername_post_request(elements, playerName):
 
         return json.dumps(response), 200, { "Content-Type": "application/json" }
 
-    else
+    else :
 
         response = {
             "sufficientFunds" : False,
