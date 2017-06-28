@@ -14,7 +14,7 @@ def ingredients_get_request():
 
 def get_ingredients ():
 	db_compose = db.select("""
-		SELECT DISTINCT compose_ingredients_recipe_name
+		SELECT DISTINCT compose_ingredient_recipe_name
 		FROM compose;""")
 
 	db_recipe = db.select("""
@@ -25,6 +25,6 @@ def get_ingredients ():
 
 	for recipe in db_recipe :
 		for ingredient in db_compose :
-			if recipe["recipe_name"] == compose["compose_ingredients_recipe_name"] :
+			if recipe["recipe_name"] == compose["compose_ingredient_recipe_name"] :
 				 tab.append(recipe["recipe_name"])
 	return tab
