@@ -27,7 +27,7 @@ def sales_post_request(elements):
         WHERE sale_day_number = """+str(current_day)+"""
         AND sale_recipe_name = '"""+item+"""'
         AND sale_player_name = '"""+sale_player_name+"""';
-        """)
+    """)
 
     if len(db_sale_select) == 1 :
 
