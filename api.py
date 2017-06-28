@@ -376,10 +376,44 @@ def get_drinks_by_player():
 
   for player in db_player_response :
 
-    drinksByPlayer[player["player_name"]] = get_player_drinks_offered_by_player_name(player["player_name"])
+    drinksByPlayer[player["player_name"]] = get_player_drinks_by_player_name(player["player_name"])
 
   return drinksByPlayer;
 
+
+# ========================== get_player_drinks_by_player_name ==========================
+# Récupère les boissons d'un joueur
+def get_player_drinks_by_player_name(player_name):
+
+  db_recipe_possession_response = db.select("""
+      SELECT recipe_possession_recipe_name
+      FROM recipe_possession
+      WHERE recipe_possession_player_name = '"""+player_name+"""';
+    """)
+
+  # Formatage des données
+  drinksOffered = []
+  for recipe in db_recipe_possession_response :
+
+    db_recipe_response = db.select("""
+        SELECT *
+        FROM recipe
+        WHERE recipe_name = '"""+recipe["recipe_possession_recipe_name"]+"""';
+      """)
+
+    if len(db_recipe_response) == 1 :
+
+      # For this we need the produce price !!!!!!
+      drink_info = {
+        "name" : db_recipe_response[0]["recipe_name"],
+        "price" : get_recipe_produce_price_by_name(db_recipe_response[0]["recipe_name"]),
+        "hasAlcohol" : db_recipe_response[0]["recipe_alcohol"],
+        "isCold" : db_recipe_response[0]["recipe_cold"]
+      }
+
+      drinksOffered.append(drink_info)
+
+  return drinksOffered
 # ========================== create_recipe ==========================
 # Créer un/une ingrédient/recette
 def create_recipe(recipe):
