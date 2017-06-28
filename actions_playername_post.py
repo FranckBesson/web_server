@@ -6,6 +6,43 @@ import json
 
 db = Db()
 
+def player_action_recipe(player_action, player_name):
+
+    recipe = player_action["recipe"]
+    
+    recipe_alcohol = "false"
+    
+    recipe_cold = "false"
+    
+    for ingredient in recipe["ingredients"] :
+
+        if (ingredient["hasAlcohol"]).lower() == "true" :
+
+            recipe_alcohol = "true"
+
+        if (ingredient["recipe_cold"]).lower() == "true" :
+
+            recipe_cold = "true"
+
+        # How to know the recipe price ?
+
+        # Création de la recette
+        new_recipe = {
+        "recipe_name" : recipe["name"],
+        "recipe_price" : 1,
+        "recipe_alcohol" : recipe_alcohol,
+        "recipe_cold" : recipe_cold
+        }
+
+        create_recipe(new_recipe)
+
+        for ingredient in recipe["ingredients"] :
+
+            db.execute("""
+                INSERT INTO compose
+                VALUES('"""+str(new_recipe["recipe_name"])+"""','"""+str(ingredient["name"])+"""');
+                """)
+
 
 def actions_playername_post_request(elements, playerName):
 
@@ -16,40 +53,7 @@ def actions_playername_post_request(elements, playerName):
     
         if player_action["kind"] == "recipe" :
     
-            recipe = player_action["recipe"]
-    
-            recipe_alcohol = "false"
-    
-            recipe_cold = "false"
-    
-            for ingredient in recipe["ingredients"] :
-    
-                if (ingredient["hasAlcohol"]).lower() == "true" :
-    
-                    recipe_alcohol = "true"
-    
-                if (ingredient["recipe_cold"]).lower() == "true" :
-    
-                    recipe_cold = "true"
-    
-            # How to know the recipe price ?
-    
-            # Création de la recette
-            new_recipe = {
-            "recipe_name" : recipe["name"],
-            "recipe_price" : 1,
-            "recipe_alcohol" : recipe_alcohol,
-            "recipe_cold" : recipe_cold
-            }
-    
-            create_recipe(new_recipe)
-    
-            for ingredient in recipe["ingredients"] :
-    
-                db.execute("""
-                    INSERT INTO compose
-                    VALUES('"""+str(new_recipe["recipe_name"])+"""','"""+str(ingredient["name"])+"""');
-                """)
+            player_action_recipe(player_action,player_name)
                 
         elif player_action["kind"] == "ad" :
     
