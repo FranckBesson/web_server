@@ -537,13 +537,16 @@ def player_have_enough_budget_by_player_name(player_name,cost):
 # ========================== deduct_player_budget_by_player_name ==========================
 # Déduit le budget du joueur en fonction du montant
 def deduct_player_budget_by_player_name(player_name,amount):
+  
+  print("-- log deduct_player_budget_by_player_name -- : "+str(player_name))
+
   db_player_response = db.select("""
     SELECT player_budget
     FROM player
     WHERE player_name = '"""+str(player_name)+"""';
   """)
 
-  print("-- log -- : "+str(db_player_response))
+  print("-- log deduct_player_budget_by_player_name -- : "+str(db_player_response))
 
   if len(db_player_response) == 1 :
 
@@ -551,7 +554,7 @@ def deduct_player_budget_by_player_name(player_name,amount):
 
     new_budget = budget - float(amount)
 
-    print("--log -- : "+str(new_budget))
+    print("--log deduct_player_budget_by_player_name -- : "+str(new_budget))
 
     db.execute("""
       UPDATE player
