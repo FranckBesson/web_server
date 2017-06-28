@@ -6,23 +6,11 @@ import json
 db = Db()
 
 def ingredients_get_request():
+	
 	# récupération des valeurs
 	ingredients = get_ingredients()
 
-	#création de l'ingrédient _ing
-	_ing = {
-	"ingredients" = ing
-	}
-
-	#Création de l'objet à renvoyer
-	response = {
-	"ingredients" : _ing
-	}
-
-	for recipe in db_recipe_response :
-		ingredientList.append(recipe)
-
-	return json.dumps(ingredientList), 200, { "Content-Type": "application/json" }
+	return json.dumps(ingredients), 200, { "Content-Type": "application/json" }
 
 def get_ingredients ():
 	db_compose = db.select("""
