@@ -23,8 +23,8 @@ def get_ingredients ():
 
 	tab = []
 
-	for recipe in db_recipe
-		for ingredient in db_compose
-			if recipe["recipe_name"] == compose["compose_ingredients_recipe_name"]
+	for recipe in db_recipe :
+		for ingredient in db_compose :
+			if recipe["recipe_name"] == compose["compose_ingredients_recipe_name"] :
 				 tab.append(recipe["recipe_name"])
 	return tab
