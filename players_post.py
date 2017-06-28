@@ -15,7 +15,7 @@ def players_post_request(elements):
   response = {
     "name" : name,
     "location" : get_player_location_by_player_name(name),
-    "info" : get_player_info_by_player_name(name)
+    "info" : get_player_info_R5_by_player_name(name)
   }
 
   return json.dumps(response), 200, { "Content-Type": "application/json" }
