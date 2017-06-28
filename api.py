@@ -547,7 +547,7 @@ def deduct_player_budget_by_player_name(player_name,amount):
 
     budget = float(db_player_response[0]["player_budget"])
 
-    new_budget = budget - (float)amount
+    new_budget = budget - float(amount)
 
     db.execute("""
       UPDATE player
