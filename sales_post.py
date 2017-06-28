@@ -4,7 +4,7 @@ from db import Db
 import json
 
 def sales_post_request(elements):
-
+  pass
 #  	print(str(elements))
 
 #  	player = elements["player"]
