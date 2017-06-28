@@ -93,13 +93,14 @@ def get_recipe_produce_price_by_name(recipe_name):
 	return cumule
 
 # ========================== get_player_drinks_offered_by_player_name ==========================
-# Récupère les boissons proposées d'un joueur
+# Récupère les boissons proposées d'un joueur pour le jour actuel (dans sale)
 def get_player_drinks_offered_by_player_name(player_name):
 
   db_recipe_possession_response = db.select("""
-      SELECT recipe_possession_recipe_name
-      FROM recipe_possession
-      WHERE recipe_possession_player_name = '"""+player_name+"""';
+      SELECT sale_recipe_name
+      FROM sale
+      WHERE sale_player_name = '"""+player_name+"""'
+      AND sale_day_number = """+str(get_current_day_number())+""";
     """)
 
   # Formatage des données
