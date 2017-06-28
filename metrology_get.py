@@ -11,7 +11,16 @@ def metrology_get_request():
   db_time_response = db.select("\
       SELECT * FROM time;\
     ")
-  timestamp = (int)(db_time_response[0]["time_hour"])
+
+  timestamp = 0
+
+  if len(db_time_response) == 1 :
+
+    timestamp = (int)(db_time_response[0]["time_hour"])
+
+  else :
+
+    return json.dumps("error in bd, no timestamp in the table"), 500, { "Content-Type": "application/json" }
   
   current_day_number = (int)(timestamp/24)
 
