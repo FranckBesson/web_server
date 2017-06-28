@@ -415,3 +415,8 @@ def day_exist_by_day_number(day_number):
   else :
 
     return True
+
+# ========================== get_available_ingredients ==========================
+# Renvoie la liste des ingredients
+def get_available_ingredients(playerName):
+  return ""

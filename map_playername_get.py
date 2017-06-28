@@ -12,7 +12,7 @@ def map_playername_get_request(playerName):
 	}
 
 	response = {
-		"availableIngredients" : "Si Fabien y arrive ...",
+		"availableIngredients" : get_available_ingredients(playerName),
 		"map" : _map,
 		"playerInfo" : get_player_info_by_player_name(playerName)
 	}
