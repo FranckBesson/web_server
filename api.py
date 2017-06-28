@@ -543,11 +543,15 @@ def deduct_player_budget_by_player_name(player_name,amount):
     WHERE player_name = '"""+str(player_name)+"""';
   """)
 
+  print("-- log -- : "+str(db_player_response))
+
   if len(db_player_response) == 1 :
 
     budget = float(db_player_response[0]["player_budget"])
 
     new_budget = budget - float(amount)
+
+    print("--log -- : "+str(new_budget))
 
     db.execute("""
       UPDATE player
