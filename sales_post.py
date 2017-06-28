@@ -3,6 +3,8 @@
 from db import Db
 import json
 
+db = Db()
+
 def sales_post_request(elements):
 
   sales = elements["sales"]
