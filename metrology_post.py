@@ -30,7 +30,7 @@ def metrology_post_request(elements):
   
       else :
         
-        print("-- log-- insert with dfn at 0 : "+str(row))
+        print("-- log-- insert with dfn at 0 : ")
 
         db.execute("""
           INSERT INTO DAY
