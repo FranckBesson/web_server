@@ -24,7 +24,7 @@ def metrology_post_request(elements):
         print("-- log-- update with dfn at 0")
         
         db.execute("""
-          UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"])+"""'
+          UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"]).upper()+"""'
           WHERE DAY_NUMBER = """+str(jour_actuel)+""";
         """)
   
@@ -34,7 +34,7 @@ def metrology_post_request(elements):
 
         db.execute("""
           INSERT INTO DAY
-          VALUES("""+str(jour_actuel)+""",'"""+str(weather["weather"])+"""');
+          VALUES("""+str(jour_actuel)+""",'"""+str(weather["weather"]).upper()+"""');
         """)
   
     # Jour suivant
@@ -45,7 +45,7 @@ def metrology_post_request(elements):
         print("-- log-- update with dfn at 1")
 
         db.execute("""
-          UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"])+"""'
+          UPDATE DAY SET DAY_WEATHER = '"""+str(weather["weather"]).upper()+"""'
           WHERE DAY_NUMBER = """+str(jour_actuel+1)+""";
         """)
   
@@ -55,7 +55,7 @@ def metrology_post_request(elements):
 
         db.execute("""
           INSERT INTO DAY
-          VALUES("""+str(jour_actuel+1)+""",'"""+str(weather["weather"])+"""');
+          VALUES("""+str(jour_actuel+1)+""",'"""+str(weather["weather"]).upper()+"""');
         """)
          
     #Sauvegarde du timestamp
