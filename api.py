@@ -94,7 +94,7 @@ def get_recipe_produce_price_by_name(recipe_name):
 
 # ========================== get_recipe_selling_price_by_name ==========================
 # Récupère le prix de vente d'une boisson
-def get_recipe_selling_price_by_name(day_number,player_name,recipe) :
+def get_recipe_selling_price_by_name(sale_day_number,sale_player_name,sale_recipe_name) :
 
   db_sale_select = db.select("""
     SELECT *
