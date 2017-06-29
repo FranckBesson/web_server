@@ -813,7 +813,7 @@ def set_day_weather_where_day_number(jour_actuel,weather):
         
     db.execute("""
       INSERT INTO DAY
-      VALUES("""+str(jour_actuel)+""",'"""+str(weather["weather"]).upper()+"""');
+      VALUES("""+str(jour_actuel)+""",'"""+str(weather).upper()+"""');
     """)
 
 # ========================== insert_new_timestamp ==========================
