@@ -14,37 +14,21 @@ def sales_post_request(elements):
 
   for sale in sales :
 
-	sale_player_name = str(sale["player"])
-	item = str(sale["item"])
-	quantity = str(sale["quantity"])
-
 	current_day = get_current_day_number()
 
-	# Je caste la valeur de quantité pour pas le joueur vende plus de boissons qu'il n'en produise
-	db_sale_select = db.select("""
-		SELECT *
-		FROM SALE
-		WHERE sale_day_number = """+str(current_day)+"""
-		AND sale_recipe_name = '"""+str(item)+"""'
-		AND sale_player_name = '"""+str(sale_player_name)+"""';
-	""")
+	# On caste la valeur de quantity pour pas que le joueur ne vende plus de boisson
+	cast_quantity_value_for_sale(str(sale["quantity"]),current_day,str(sale["item"]),str(sale["player"]))
 
-	if len(db_sale_select) == 1 :
-
-		productions = float(db_sale_select[0]["sale_produce"])
-
-		if quantity > productions :
-
-			quantity = productions
-
+	# Mise à jour de la table sale pour prendre en compte les ventes
 	db.execute("""
 		UPDATE SALE
-		SET sale_number = """+str(quantity)+"""
+		SET sale_number = """+str(sale["quantity"])+"""
 		WHERE sale_day_number = """+str(current_day)+"""
-		AND sale_recipe_name = '"""+str(item)+"""'
-		AND sale_player_name = '"""+str(sale_player_name)+"""';
+		AND sale_recipe_name = '"""+str(sale["item"])+"""'
+		AND sale_player_name = '"""+str(sale["player"])+"""';
 	""")
 
+  # Effectue une mise à jour du budget de tout les joueurs
   calculate_all_sales()
 
   return json.dumps(""), 200, { "Content-Type": "application/json" }

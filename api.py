@@ -500,7 +500,9 @@ def create_recipe(recipe):
     """)
 
 # ========================== get_day_number ==========================
-# Renvoie le nombre du jour courrant
+# Renvoie le nombre du jour courant
+# La requête peut planter mais nous ne gérons pas l'execption car le java renverra automatiquement une autre requête
+# Elle plante car elle essaie de lire une table qui est temporairement vide au même moment
 def get_current_day_number():
 
   db_day_response=db.select("""
@@ -771,3 +773,27 @@ def player_action_drinks(player_action, player_name):
             AND sale_recipe_name = '"""+sale_recipe_name+"""'
             AND sale_player_name = '"""+sale_player_name+"""';
         """)
+
+# ========================== cast_quantity_value_for_sale ==========================
+# Caste la valeur de quantité pour pas le joueur vende plus de boissons qu'il n'en produise
+def cast_quantity_value_for_sale(quantity,current_day,item,sale_player_name):
+
+  new_quantity = quantity
+
+  db_sale_select = db.select("""
+    SELECT *
+    FROM SALE
+    WHERE sale_day_number = """+str(current_day)+"""
+    AND sale_recipe_name = '"""+str(item)+"""'
+    AND sale_player_name = '"""+str(sale_player_name)+"""';
+  """)
+
+  if len(db_sale_select) == 1 :
+
+    productions = float(db_sale_select[0]["sale_produce"])
+
+    if new_quantity > productions :
+
+      new_quantity = productions
+
+  return new_quantity
