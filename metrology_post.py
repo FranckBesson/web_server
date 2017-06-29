@@ -9,7 +9,7 @@ def metrology_post_request(elements):
 
   jour_actuel = (int)((int)(elements["timestamp"])/24)
 
-  print(str("Day : "+jour_actuel))
+  print(str("Day : "+str(jour_actuel)))
 
   for weather in forcast :
 
