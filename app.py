@@ -30,6 +30,7 @@ def metrology_get():
   try :
     return metrology_get_request()
   except InternalError :
+    print("-- log -- : le serveur à planté !")
     db.close()
     db = Db()
     return metrology_get()
