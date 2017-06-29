@@ -797,3 +797,34 @@ def cast_quantity_value_for_sale(quantity,current_day,item,sale_player_name):
       new_quantity = productions
 
   return new_quantity
+
+# ========================== set_day_weather_where_day_number ==========================
+# Insert ou met à jour le temps en base de donnée
+def set_day_weather_where_day_number(jour_actuel,weather):
+
+  if day_exist_by_day_number(jour_actuel) :
+        
+    db.execute("""
+      UPDATE DAY SET DAY_WEATHER = '"""+str(weather).upper()+"""'
+      WHERE DAY_NUMBER = """+str(jour_actuel)+""";
+    """)
+  
+  else :
+        
+    db.execute("""
+      INSERT INTO DAY
+      VALUES("""+str(jour_actuel)+""",'"""+str(weather["weather"]).upper()+"""');
+    """)
+
+# ========================== insert_new_timestamp ==========================
+# Insertion d'un nouveau timestamp
+def insert_new_timestamp(timestamp):
+
+  db.execute("\
+    DELETE FROM TIME;\
+  ")
+
+  db.execute("\
+    INSERT INTO TIME\
+    VALUES("+str(timestamp)+");\
+  ")

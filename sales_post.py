@@ -31,4 +31,4 @@ def sales_post_request(elements):
   # Effectue une mise à jour du budget de tout les joueurs
   calculate_all_sales()
 
-  return json.dumps(""), 200, { "Content-Type": "application/json" }
+  return json.dumps(""), 200, { "Content-Type": "application/json" }	
