@@ -828,3 +828,47 @@ def insert_new_timestamp(timestamp):
     INSERT INTO TIME\
     VALUES("+str(timestamp)+");\
   ")
+
+def get_weather_today():
+
+  db_current_weather_response = db.select("\
+    SELECT day_weather FROM day\
+    WHERE day_number = "+str(get_current_day_number())+";\
+  ")
+
+  # On test pour voir si le jour actuel est en base de donnée
+  if len(db_current_weather_response) == 1 :
+
+    # On crée une map weather_today
+    weather_today = {
+      "dfn" : 0,
+      "weather" : str(db_current_weather_response[0]["day_weather"])
+    }
+
+    return weather_today
+
+  else :
+
+    return False
+
+def get_weather_tomorrow():
+
+  db_tomorrow_weather_response = db.select("\
+      SELECT day_weather FROM day\
+      WHERE day_number = "+str(get_current_day_number()+1)+";\
+    ")
+
+  # On test pour voir si le jour de demain est en base de donnée
+  if len(db_tomorrow_weather_response) == 1 :
+
+    # On crée une map weather_tomorrow
+    weather_tomorrow = {
+      "dfn" : 1,
+      "weather" : str(db_tomorrow_weather_response[0]["day_weather"])
+    }
+
+    return weather_tomorrow
+
+  else :
+
+    return False
