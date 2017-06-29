@@ -106,7 +106,7 @@ def get_recipe_selling_price_by_name(sale_day_number,sale_player_name,sale_recip
 
   if len(db_sale_select) == 1 :
 
-    return float(db_sale_select["sale_recipe_price"])
+    return float(db_sale_select[0]["sale_recipe_price"])
 
   else :
 
