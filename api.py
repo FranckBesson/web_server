@@ -92,15 +92,38 @@ def get_recipe_produce_price_by_name(recipe_name):
 
 	return cumule
 
+# ========================== get_recipe_selling_price_by_name ==========================
+# Récupère le prix de vente d'une boisson
+def get_recipe_selling_price_by_name(day_number,player_name,recipe) :
+
+  db_sale_select = db.select("""
+    SELECT *
+    FROM SALE
+    WHERE sale_day_number = """+sale_day_number+"""
+    AND sale_recipe_name = '"""+sale_recipe_name+"""'
+    AND sale_player_name = '"""+sale_player_name+"""';
+  """)
+
+  if len(db_sale_select) == 1 :
+
+    return float(db_sale_select["sale_recipe_price"])
+
+  else :
+
+    return None
+
+
 # ========================== get_player_drinks_offered_by_player_name ==========================
 # Récupère les boissons proposées d'un joueur pour le jour actuel (dans sale)
 def get_player_drinks_offered_by_player_name(player_name):
+
+  current_day = get_current_day_number()
 
   db_recipe_possession_response = db.select("""
       SELECT sale_recipe_name
       FROM sale
       WHERE sale_player_name = '"""+player_name+"""'
-      AND sale_day_number = """+str(get_current_day_number())+""";
+      AND sale_day_number = """+str(current_day)+""";
     """)
 
   # Formatage des données
@@ -118,7 +141,7 @@ def get_player_drinks_offered_by_player_name(player_name):
       # For this we need the produce price !!!!!!
       drink_info = {
         "name" : db_recipe_response[0]["recipe_name"],
-        "price" : get_recipe_produce_price_by_name(db_recipe_response[0]["recipe_name"]),
+        "price" : get_recipe_selling_price_by_name(current_day, player_name, db_recipe_response[0]["recipe_name"]),
         "hasAlcohol" : db_recipe_response[0]["recipe_alcohol"],
         "isCold" : db_recipe_response[0]["recipe_cold"]
       }
