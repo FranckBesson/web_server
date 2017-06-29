@@ -24,7 +24,7 @@ def sales_post_request(elements):
 	db_sale_select = db.select("""
 		SELECT *
 		FROM SALE
-		WHERE sale_day_number = """+str(current_day+1)+"""
+		WHERE sale_day_number = """+str(current_day)+"""
 		AND sale_recipe_name = '"""+str(item)+"""'
 		AND sale_player_name = '"""+str(sale_player_name)+"""';
 	""")
@@ -42,7 +42,7 @@ def sales_post_request(elements):
 	db.execute("""
 		UPDATE SALE
 		SET sale_number = """+str(quantity)+"""
-		WHERE sale_day_number = """+str(current_day+1)+"""
+		WHERE sale_day_number = """+str(current_day)+"""
 		AND sale_recipe_name = '"""+str(item)+"""'
 		AND sale_player_name = '"""+str(sale_player_name)+"""';
 	""")
