@@ -137,14 +137,17 @@ def get_player_info_R2_by_player_name(player_name):
       FROM player
       WHERE player_name = '"""+player_name+"""';
     """)
-  player = db_player_response[0]
 
-  playerInfo = {
-    "cash" : player["player_budget"],
-    "sales" : get_player_sale_by_player_name(player_name),
-    "profit" : get_player_profit_by_player_name(player_name),
-    "drinksOffered" : get_player_drinks_offered_by_player_name(player_name)
-  }
+  if len(db_player_response) == 1 :
+
+    player = db_player_response[0]
+
+    playerInfo = {
+      "cash" : player["player_budget"],
+      "sales" : get_player_sale_by_player_name(player_name),
+      "profit" : get_player_profit_by_player_name(player_name),
+      "drinksOffered" : get_player_drinks_offered_by_player_name(player_name)
+    }
 
   return playerInfo
 
@@ -158,14 +161,17 @@ def get_player_info_R5_by_player_name(player_name):
       FROM player
       WHERE player_name = '"""+player_name+"""';
     """)
-  player = db_player_response[0]
 
-  playerInfo = {
-    "cash" : player["player_budget"],
-    "sales" : get_player_sale_by_player_name(player_name),
-    "profit" : get_player_profit_by_player_name(player_name),
-    "drinksOffered" : get_player_drinks_by_player_name(player_name)
-  }
+  if len(db_player_response) == 1 :
+
+    player = db_player_response[0]
+
+    playerInfo = {
+      "cash" : player["player_budget"],
+      "sales" : get_player_sale_by_player_name(player_name),
+      "profit" : get_player_profit_by_player_name(player_name),
+      "drinksOffered" : get_player_drinks_by_player_name(player_name)
+    }
 
   return playerInfo
 
