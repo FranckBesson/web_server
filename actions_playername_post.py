@@ -54,7 +54,7 @@ def player_action_ad(player_action, player_name):
         VALUES('AD', """+radius+""",'"""+player_name+"""',"""+latitude+""","""+longitude+""");
     """)
 
-    cost = float(player_action["radius"]) * 5.0
+    cost = float(player_action["radius"]) * 10.0
 
     deduct_player_budget_by_player_name(player_name,cost)
     
@@ -113,7 +113,7 @@ def actions_playername_post_request(elements, playerName):
     
         if player_action["kind"] == "ad" :
 
-            cost += float(player_action["radius"]) * 5.0
+            cost += float(player_action["radius"]) * 10.0
 
         elif player_action["kind"] == "drinks" :
 
