@@ -149,7 +149,9 @@ def get_player_info_R2_by_player_name(player_name):
       "drinksOffered" : get_player_drinks_offered_by_player_name(player_name)
     }
 
-  return playerInfo
+    return playerInfo
+
+  return None
 
 # ========================== get_player_info_R5_by_player_name ==========================
 # Requête pour lister les items des joueur
@@ -173,7 +175,11 @@ def get_player_info_R5_by_player_name(player_name):
       "drinksOffered" : get_player_drinks_by_player_name(player_name)
     }
 
-  return playerInfo
+    return playerInfo
+
+  return None
+
+
 
 # ========================== get_items_by_player_name ==========================
 # Requête pour lister les items des joueur
