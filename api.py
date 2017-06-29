@@ -574,6 +574,34 @@ def deduct_player_budget_by_player_name(player_name,amount):
       WHERE player_name = '"""+str(player_name)+"""';
     """)
 
+# ========================== deduct_player_budget_by_player_name ==========================
+# Déduit le budget du joueur en fonction du montant
+def add_player_budget_by_player_name(player_name,amount):
+
+  print("-- log deduct_player_budget_by_player_name -- : "+str(player_name))
+
+  db_player_response = db.select("""
+    SELECT player_budget
+    FROM player
+    WHERE player_name = '"""+str(player_name)+"""';
+  """)
+
+  print("-- log deduct_player_budget_by_player_name -- : "+str(db_player_response))
+
+  if len(db_player_response) == 1 :
+
+    budget = float(db_player_response[0]["player_budget"])
+
+    new_budget = budget + float(amount)
+
+    print("--log deduct_player_budget_by_player_name -- : "+str(new_budget))
+
+    db.execute("""
+      UPDATE player
+      SET player_budget = """+str(new_budget)+"""
+      WHERE player_name = '"""+str(player_name)+"""';
+    """)
+
 # ========================== recipe_quantity_produce_by_day_recipe_and_player ==========================
 # renvoie le nombre de production par recette, jour et nom de joueur
 def recipe_quantity_produce_by_day_recipe_and_player(current_day,item,sale_player_name) :
@@ -606,16 +634,15 @@ def calculate_all_sales() :
       WHERE sale_day_number = """+str(current_day)+""";
     """)
 
-  print("-- log -- current_day : "+str(current_day))
-  print("-- log -- db_sale_response : "+str(db_sale_response))
-
   for sale in db_sale_response :
 
     # Calcul le coût de production
     recipe_produce_price = float(get_recipe_produce_price_by_name(str(sale["sale_recipe_name"])))
     recipe_quantity_produce = float(recipe_quantity_produce_by_day_recipe_and_player(current_day,str(sale["sale_recipe_name"]),str(sale["sale_player_name"])))
     production_cost = recipe_quantity_produce * recipe_produce_price
-    print("-- log -- recipe_produce_price"+str(recipe_produce_price))
-    print("-- log -- recipe_quantity_produce"+str(recipe_quantity_produce))
-    print("-- log -- production_cost"+str(production_cost))
     deduct_player_budget_by_player_name(str(sale["sale_player_name"]),production_cost)
+
+    sale_number = float(sale["sale_number"])
+    sale_recipe_price = float(sale["sale_recipe_price"])
+    benefice = sale_number * sale_recipe_price
+    add_player_budget_by_player_name(str(sale["sale_player_name"]),benefice)
