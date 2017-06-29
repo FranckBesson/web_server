@@ -29,8 +29,6 @@ def sales_post_request(elements):
 		AND sale_player_name = '"""+str(sale_player_name)+"""';
 	""")
 
-	print("-- log -- sales_post_request : "+str(db_sale_select))
-
 	if len(db_sale_select) == 1 :
 
 		productions = float(db_sale_select[0]["sale_produce"])
@@ -38,8 +36,6 @@ def sales_post_request(elements):
 		if quantity > productions :
 
 			quantity = productions
-
-	print("-- log -- sales_post_request quantity : "+str(quantity))
 
 	db.execute("""
 		UPDATE SALE

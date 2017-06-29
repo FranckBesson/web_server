@@ -606,8 +606,8 @@ def calculate_all_sales() :
       WHERE sale_day_number = """+str(current_day)+""";
     """)
 
-  print("-- log -- : "+str(current_day))
-  print("-- log -- : "+str(db_sale_response))
+  print("-- log -- current_day : "+str(current_day))
+  print("-- log -- db_sale_response : "+str(db_sale_response))
 
   for sale in db_sale_response :
 
@@ -615,4 +615,7 @@ def calculate_all_sales() :
     recipe_produce_price = float(get_recipe_produce_price_by_name(str(sale["sale_recipe_name"])))
     recipe_quantity_produce = float(recipe_quantity_produce_by_day_recipe_and_player(current_day,str(sale["sale_recipe_name"]),str(sale["sale_player_name"])))
     production_cost = recipe_quantity_produce * recipe_produce_price
+    print("-- log -- recipe_produce_price"+str(recipe_produce_price))
+    print("-- log -- recipe_quantity_produce"+str(recipe_quantity_produce))
+    print("-- log -- production_cost"+str(production_cost))
     deduct_player_budget_by_player_name(str(sale["sale_player_name"]),production_cost)
