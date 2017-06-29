@@ -99,9 +99,9 @@ def get_recipe_selling_price_by_name(sale_day_number,sale_player_name,sale_recip
   db_sale_select = db.select("""
     SELECT *
     FROM SALE
-    WHERE sale_day_number = """+sale_day_number+"""
-    AND sale_recipe_name = '"""+sale_recipe_name+"""'
-    AND sale_player_name = '"""+sale_player_name+"""';
+    WHERE sale_day_number = """+str(sale_day_number)+"""
+    AND sale_recipe_name = '"""+str(sale_recipe_name)+"""'
+    AND sale_player_name = '"""+str(sale_player_name)+"""';
   """)
 
   if len(db_sale_select) == 1 :
