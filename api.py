@@ -879,4 +879,10 @@ def get_timestamp():
     SELECT * FROM time;\
   ")
 
-  return db_time_response[0]["time_hour"]
+  if len(db_time_response) == 1 :
+
+    return db_time_response[0]["time_hour"]
+
+  else :
+
+    return get_timestamp()
