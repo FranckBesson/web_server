@@ -53,6 +53,10 @@ def player_action_ad(player_action, player_name):
         INSERT INTO item(item_kind,item_influence,item_owner,item_x_coordinate,item_y_coordinate)
         VALUES('AD', """+radius+""",'"""+player_name+"""',"""+latitude+""","""+longitude+""");
     """)
+
+    cost += float(player_action["radius"]) * 5.0
+
+    deduct_player_budget_by_player_name(player_name,cost)
     
 def player_action_drinks(player_action, player_name):
 
@@ -110,8 +114,6 @@ def actions_playername_post_request(elements, playerName):
         if player_action["kind"] == "ad" :
 
             cost += float(player_action["radius"]) * 5.0
-
-            print("-- log -- cost : " + str(cost))
 
         elif player_action["kind"] == "drinks" :
 
