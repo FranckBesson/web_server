@@ -23,7 +23,7 @@ def metrology_get_request():
 
   #Création de l'objet à renvoyer
   response = {
-    "timestamp" : timestamp,
+    "timestamp" : get_timestamp(),
     "weather" : weathers
   }
   

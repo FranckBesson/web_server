@@ -872,3 +872,11 @@ def get_weather_tomorrow():
   else :
 
     return False
+
+def get_timestamp():
+
+  db_time_response = db.select("\
+    SELECT * FROM time;\
+  ")
+
+  return db_time_response[0]["time_hour"]
