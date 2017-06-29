@@ -251,11 +251,11 @@ def get_new_location():
     FROM map;
   """)
 
-  span_x = db_map_response[0]["map_span_x"]
-  span_y = db_map_response[0]["map_span_y"]
+  span_x = float(db_map_response[0]["map_span_x"])
+  span_y = float(db_map_response[0]["map_span_y"])
 
-  x_rand = random.random() * span_x
-  y_rand = random.random() * span_y
+  x_rand = float(random.random() * span_x)
+  y_rand = float(random.random() * span_y)
 
   location = {
   	"latitude" : x_rand,
