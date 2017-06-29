@@ -111,6 +111,8 @@ def actions_playername_post_request(elements, playerName):
 
             cost += float(player_action["radius"]) * 5.0
 
+            print("-- log -- cost : "str(cost))
+
         elif player_action["kind"] == "drinks" :
 
             # Technique certainement gitanne et précaire mais d'apoint
