@@ -39,6 +39,8 @@ def sales_post_request(elements):
 
 			quantity = productions
 
+	print("-- log -- sales_post_request quantity : "+str(quantity))
+
 	db.execute("""
 		UPDATE SALE
 		SET sale_number = """+str(quantity)+"""
