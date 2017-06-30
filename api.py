@@ -1,5 +1,10 @@
 # coding=utf-8
 
+# File    : api.py
+# Author  : Franck BESSON
+# Date    : 06/2017
+# Role    : Store all the functions use for the project
+
 from db import Db
 import json
 import random

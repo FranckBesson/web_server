@@ -1,5 +1,10 @@
 # coding=utf-8
 
+# File    : app.py
+# Author  : Franck BESSON
+# Date    : 06/2017
+# Role    : Interact with Java simulator, client web and c program
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from db import Db
