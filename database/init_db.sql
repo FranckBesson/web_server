@@ -1,5 +1,5 @@
 -- ============================================================================
--- File             : lomonade_DELETE.sql
+-- File             : lemonade_DELETE.sql
 -- Author           : Franck BESSON
 -- Date             : June 2017
 -- Role             : Delete tables
